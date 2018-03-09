@@ -1,0 +1,9 @@
+<template name="vacancies">
+	<h1>Vacancies</h1>
+	<ul>
+	{{#each vacancy in vacancies}}
+		<li>{{vacancy.title}}</li>
+		{{>respond_button vacancy_id=vacancy._id}}
+	{{/each}}
+	</ul>
+</template>

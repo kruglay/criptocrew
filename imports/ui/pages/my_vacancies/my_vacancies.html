@@ -1,0 +1,8 @@
+<template name="my_vacancies">
+	<h1>My vacancies</h1>
+	<ul>
+	{{#each vacancy in vacancies}}
+		<li>{{vacancy.title}}</li>
+	{{/each}}
+	</ul>
+</template>

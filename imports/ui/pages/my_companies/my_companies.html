@@ -1,0 +1,8 @@
+<template name="my_companies">
+	<h1>My companies</h1>
+	<ul>
+	{{#each company in companies}}
+		<li>{{company.title}}</li>
+	{{/each}}
+	</ul>
+</template>
