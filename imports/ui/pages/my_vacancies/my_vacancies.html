@@ -1,8 +1,16 @@
 <template name="my_vacancies">
 	<h1>My vacancies</h1>
-	<ul>
-	{{#each vacancy in vacancies}}
-		<li>{{vacancy.title}}</li>
-	{{/each}}
+	{{#if vacancies.count}}
+	<ul class="list-group">
+		{{#each vacancy in vacancies}}
+			<li class="list-group-item">
+				<p><b>{{vacancy.title}}</b></p>
+				<a href="/my/vacancies/{{vacancy._id}}" class="btn btn-default">Edit</a>
+				<a href="#" class="delete btn btn-danger" data-id="{{vacancy._id}}">Delete</a>
+			</li>
+		{{/each}}
 	</ul>
+	{{else}}
+		<p>You have no vacancies. <a href="/my/publish-vacancy">Publish one</a></p>
+	{{/if}}
 </template>

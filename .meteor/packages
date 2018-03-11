@@ -27,3 +27,8 @@ accounts-facebook
 accounts-google
 check
 aldeed:simple-schema
+reactive-dict
+useraccounts:bootstrap
+twbs:bootstrap
+useraccounts:flow-routing
+arillo:flow-router-helpers

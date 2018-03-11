@@ -1,0 +1,7 @@
+<template name="select">
+  <select name="{{name}}" class="form-control" required>
+    {{#each option in options}}
+      <option value="{{option._id}}" selected="{{selected value option._id}}">{{option.title}}</option>
+    {{/each}}
+  </select>
+</template>

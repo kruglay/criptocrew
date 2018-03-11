@@ -1,0 +1,17 @@
+<template name="profile_bar">
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			{{ username }}
+			<span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+			<li><a href="/my/publish-vacancy">Create company</a></li>
+			<li role="separator" class="divider"></li>
+			<li><a href="/my/publish-vacancy">Publish vacancy</a></li>
+			<li><a href="/my/my-companies">My companies</a></li>
+			<li><a href="/my/vacancies">My vacancies</a></li>
+			<li role="separator" class="divider"></li>
+			<li><a href="#" class="logout">Logout</a></li>
+		</ul>
+	</li>
+</template>

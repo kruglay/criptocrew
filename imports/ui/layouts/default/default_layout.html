@@ -1,10 +1,6 @@
 <template name="default_layout">
-	{{> header}}
-	{{> loginButtons}}
-	<hr>
-	{{> Template.dynamic template=page}}
-</template>
-
-<template name="a1">
-	<h1>--- header ---</h1>
+	<div class="container">
+		{{> header}}
+		{{> Template.dynamic template=page}}
+	</div>
 </template>

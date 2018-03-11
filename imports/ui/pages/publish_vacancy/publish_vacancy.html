@@ -1,7 +1,14 @@
 <template name="publish_vacancy">
 	<h1>Publish vacancy</h1>
-	<form class="publish-vacancy-form">
-		<input type="text" name="title" placeholder="Type title here" />
-		<input type="submit">
+	<form class="form vacancy-form">
+		<div class="form-group">
+			<label>Title</label>
+			<input type="text" name="title" placeholder="Type title here" class="form-control" required/>
+		</div>
+		<div class="form-group">
+			<label>Company</label>
+			{{>select name='_company' options=myCompanies}}
+		</div>
+		<input type="submit" value="Publish" class="btn btn-primary">
 	</form>
 </template>

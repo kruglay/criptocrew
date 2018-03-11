@@ -1,0 +1,9 @@
+<template name="modal">
+	<div class="js-modal proto-modal proto-modal--{{state}} modals-{{modal.name}} {{class}}">
+		<div class="js-prevent proto-modal-content">
+			{{#if modal}}
+				{{>Template.dynamic template=modalTemplate data=modalData}}
+			{{/if}}
+		</div>
+	</div>
+</template>

@@ -1,9 +1,11 @@
 <template name="vacancies">
 	<h1>Vacancies</h1>
-	<ul>
+	<ul class="list-group">
 	{{#each vacancy in vacancies}}
-		<li>{{vacancy.title}}</li>
-		{{>respond_button vacancy_id=vacancy._id}}
+		<li class="list-group-item">
+			<p><b>{{vacancy.title}}</b></p>
+			{{>respond_button vacancy_id=vacancy._id}}
+		</li>
 	{{/each}}
 	</ul>
 </template>
