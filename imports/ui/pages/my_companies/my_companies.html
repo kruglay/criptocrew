@@ -1,8 +1,28 @@
 <template name="my_companies">
+	<div class="pull-right">
+		<a href="/my/companies/new" class="btn btn-primary">Create new</a>
+	</div>
 	<h1>My companies</h1>
-	<ul>
-	{{#each company in companies}}
-		<li>{{company.title}}</li>
-	{{/each}}
-	</ul>
+	{{#if companies.count}}
+		<ul class="list-group companies">
+			{{#each company in companies}}
+				<li class="list-group-item">
+					<div class="image">
+				    {{#if company.imageUrl}}
+						  <img src="{{company.imageUrl}}" />
+						{{else}}
+							<img src="/img/dummy.png" />
+						{{/if}}
+					</div>
+					<div class="body">
+						<p><b>{{company.title}}</b></p>
+						<a href="/my/companies/{{company._id}}" class="btn btn-default">{{_ "edit"}}</a>
+						<a href="#" class="delete btn btn-danger" data-id="{{company._id}}">{{_ "delete"}}</a>
+					</div>
+				</li>
+			{{/each}}
+		</ul>
+	{{else}}
+		<p>You have no companies. <a href="/my/companies/new">Create one</a></p>
+	{{/if}}
 </template>

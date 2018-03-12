@@ -32,3 +32,5 @@ useraccounts:bootstrap
 twbs:bootstrap
 useraccounts:flow-routing
 arillo:flow-router-helpers
+suxez:jquery-serialize-object
+tap:i18n

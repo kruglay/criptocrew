@@ -1,0 +1,24 @@
+<template name="my_resumes">
+	<div class="pull-right">
+		<a href="/my/resumes/new" class="btn btn-primary">Create new</a>
+	</div>
+	<h1>My resumes</h1>
+	{{#if resumes.count}}
+		<ul class="list-group resumes">
+			{{#each resume in resumes}}
+				<li class="list-group-item">
+					<p><a href="{{resume.url}}" target="_blank"><b>{{resume.title}}</b></a></p>
+					<a href="/my/resumes/{{resume._id}}" class="btn btn-default">{{_ "edit"}}</a>
+					<a href="#" class="delete btn btn-danger" data-id="{{resume._id}}">{{_ "delete"}}</a>
+					{{#if resume.isPublic}}
+						<span class="btn btn-success">Public</span>
+					{{else}}
+						<a href="#" class="makePublic btn btn-warning" data-id="{{resume._id}}">Make public</a>
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	{{else}}
+		<p>You have no resumes. <a href="/my/resumes/new">Create one</a></p>
+	{{/if}}
+</template>

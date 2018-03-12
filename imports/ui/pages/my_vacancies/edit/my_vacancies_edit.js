@@ -3,6 +3,7 @@ import './my_vacancies_edit.html'
 import { vacancies } from '/imports/api/vacancies/collections/vacancies.js'
 import { companies } from '/imports/api/companies/collections/companies.js'
 
+// todo that:
 // Template.my_vacancies_edit.onCreated(() => {
 //   this.vacancy = vacancies.findOne({_id: FlowRouter.getParam('id')})
 //   if (!this.vacancy) {
@@ -18,6 +19,7 @@ Template.my_vacancies_edit.events({
       FlowRouter.getParam('id'),
       {
         title: e.target.title.value,
+        description: e.target.description.value,
         _company: e.target._company.value
       },
       Handlers.default()

@@ -1,0 +1,10 @@
+<template name="resumes">
+	<h1>Resumes</h1>
+	<ul class="list-group">
+		{{#each resume in resumes}}
+			<li class="list-group-item">
+				<p><b>{{resume.title}}</b></p>
+			</li>
+		{{/each}}
+	</ul>
+</template>

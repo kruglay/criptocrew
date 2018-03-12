@@ -7,7 +7,8 @@ const schema = {
     updatedAt: Date,
     _user: String,
     _company: String,
-    title: String
+    title: String,
+    description: String
   }
 }
 
@@ -66,7 +67,7 @@ Meteor.methods({
     }
     if (Meteor.userId() !== existingDoc._user) {
       throw new Meteor.Error(
-        'vacancies.insert',
+        'vacancies.remove',
         `Vacancy ${existingDoc._company} does not belongs not you`
       )
     }

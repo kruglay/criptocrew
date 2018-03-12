@@ -22,6 +22,25 @@ FlowRouter.route('/vacancies', {
   }
 })
 
+FlowRouter.route('/vacancies', {
+  action () {
+    BlazeLayout.render('default_layout', { page: 'vacancies' })
+  }
+})
+
+FlowRouter.route('/vacancies/:vacancyId', {
+  action () {
+    BlazeLayout.render('default_layout', { page: 'vacancy' })
+  }
+})
+
+FlowRouter.route('/resumes', {
+  action () {
+    BlazeLayout.render('default_layout', { page: 'resumes' })
+  }
+})
+
+
 const myRoutes = FlowRouter.group({
   prefix: '/my',
   name: 'my',
@@ -50,9 +69,39 @@ myRoutes.route('/publish-vacancy', {
   }
 })
 
-myRoutes.route('/my-companies', {
+myRoutes.route('/companies', {
   action () {
     BlazeLayout.render('default_layout', { page: 'my_companies' })
+  }
+})
+
+myRoutes.route('/companies/new', {
+  action () {
+    BlazeLayout.render('default_layout', { page: 'my_companies_create' })
+  }
+})
+
+myRoutes.route('/companies/:id', {
+  action () {
+    BlazeLayout.render('default_layout', { page: 'my_companies_edit' })
+  }
+})
+
+myRoutes.route('/resumes', {
+  action () {
+    BlazeLayout.render('default_layout', { page: 'my_resumes' })
+  }
+})
+
+myRoutes.route('/resumes/new', {
+  action () {
+    BlazeLayout.render('default_layout', { page: 'my_resumes_create' })
+  }
+})
+
+myRoutes.route('/resumes/:id', {
+  action () {
+    BlazeLayout.render('default_layout', { page: 'my_resumes_edit' })
   }
 })
 
