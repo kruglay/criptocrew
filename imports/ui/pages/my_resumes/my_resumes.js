@@ -1,5 +1,6 @@
 import './my_resumes.html'
 import { resumes } from '/imports/api/resumes/collections/resumes.js'
+import { profiles } from '/imports/api/profiles/collections/profiles.js'
 import { Handlers } from '/imports/ui/utils/handlers.js'
 
 Template.my_resumes.events({
@@ -23,7 +24,13 @@ Template.my_resumes.events({
 })
 
 Template.my_resumes.helpers({
-  resumes() {
-    return resumes.find({_user: Meteor.userId()})
+  canCreate () {
+    return !!profiles.findOne({
+      _user: Meteor.userId()
+    })
+  },
+
+  resumes () {
+    return resumes.find({ _user: Meteor.userId() })
   }
 })

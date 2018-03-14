@@ -51,6 +51,12 @@ const myRoutes = FlowRouter.group({
   }]
 })
 
+myRoutes.route('/profile', {
+  action () {
+    BlazeLayout.render('default_layout', { page: 'my_profile' })
+  }
+})
+
 myRoutes.route('/vacancies', {
   action () {
     BlazeLayout.render('default_layout', { page: 'my_vacancies' })

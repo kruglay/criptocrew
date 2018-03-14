@@ -14,3 +14,19 @@
   max-width: 80px;
   max-height: 80px;
 }
+
+.profile-bar-username {
+  display: inline-block;
+  line-height: 13px;
+  max-width: 150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
+.resumes-list .username {
+  font-size: 20px;
+  font-weight: bold;
+}

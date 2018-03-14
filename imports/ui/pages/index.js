@@ -1,6 +1,7 @@
 import './vacancies/vacancies.js'
 import './vacancy/vacancy.js'
 import './resumes/resumes.js'
+import './my_profile/my_profile.js'
 import './my_companies/my_companies.js'
 import './my_companies/edit/my_companies_edit.js'
 import './my_companies/create/my_companies_create.js'

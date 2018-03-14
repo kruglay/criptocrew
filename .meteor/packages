@@ -34,3 +34,5 @@ useraccounts:flow-routing
 arillo:flow-router-helpers
 suxez:jquery-serialize-object
 tap:i18n
+fortawesome:fontawesome
+dburles:collection-helpers
