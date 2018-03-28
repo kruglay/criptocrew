@@ -18,13 +18,7 @@ FlowRouter.route('/', {
 
 FlowRouter.route('/vacancies', {
   action () {
-    BlazeLayout.render('default_layout', { page: 'vacancies' })
-  }
-})
-
-FlowRouter.route('/vacancies', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'vacancies' })
+    BlazeLayout.render('default_layout', { page: 'jobs' })
   }
 })
 
