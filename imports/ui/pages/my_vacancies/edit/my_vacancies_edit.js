@@ -1,7 +1,7 @@
 import { Handlers } from '/imports/ui/utils/handlers.js'
 import './my_vacancies_edit.html'
-import { vacancies } from '/imports/api/vacancies/collections/vacancies.js'
-import { companies } from '/imports/api/companies/collections/companies.js'
+import {Vacanсy} from "/imports/api/vacancies"
+import {Company} from "/imports/api/companies"
 
 // todo that:
 // Template.my_vacancies_edit.onCreated(() => {
@@ -14,26 +14,26 @@ import { companies } from '/imports/api/companies/collections/companies.js'
 Template.my_vacancies_edit.events({
   'submit .vacancy-form'(e) {
     e.preventDefault()
-    Meteor.call(
-      'vacancies.patch',
-      FlowRouter.getParam('id'),
-      {
+    const vacancy = Vacanсy.findOne(FlowRouter.getParam('id')),
+      data = {
         title: e.target.title.value,
         description: e.target.description.value,
         _company: e.target._company.value
-      },
-      Handlers.default()
-    )
+      }
+
+    if(vacancy) {
+      vacancy.patch(data, Handlers.default())
+    }
   }
 })
 
 
 Template.my_vacancies_edit.helpers({
-  myCompanies: () => companies.find({_user: Meteor.userId()}),
+  myCompanies: () => Company.find({_user: Meteor.userId()}),
 
   vacancy() {
     // todo get from inCreated
     // console.log(vacancies.findOne({_id: FlowRouter.getParam('id')}))
-    return vacancies.findOne({_id: FlowRouter.getParam('id')})
+    return Vacanсy.findOne(FlowRouter.getParam('id'))
   }
 })

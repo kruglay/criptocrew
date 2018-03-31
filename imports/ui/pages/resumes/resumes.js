@@ -1,8 +1,8 @@
 import './resumes.html'
-import { resumes } from '/imports/api/resumes/collections/resumes.js'
+import {Resume} from "/imports/api/resumes"
 
 Template.resumes.helpers({
   resumes() {
-    return resumes.find({isPublic: true})
+    return Resume.find({isPublic: true})
   }
 })

@@ -1,20 +1,19 @@
 import './my_vacancies.html'
-import { vacancies } from '/imports/api/vacancies/collections/vacancies.js'
 import { Handlers } from '/imports/ui/utils/handlers.js'
+import {Vacanсy} from "/imports/api/vacancies"
 
 Template.my_vacancies.events({
   'click .delete': (e) => {
     e.preventDefault()
-    Meteor.call(
-      'vacancies.remove',
-      e.currentTarget.dataset.id,
-      Handlers.default()
-    )
+    const vacancy = Vacanсy.findOne(e.currentTarget.dataset.id)
+    if(vacancy) {
+      vacancy.delete(Handlers.default())
+    }
   }
 })
 
 Template.my_vacancies.helpers({
   vacancies() {
-    return vacancies.find({_user: Meteor.userId()})
+    return Vacanсy.find({_user: Meteor.userId()})
   }
 })

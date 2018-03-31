@@ -1,6 +1,7 @@
 import './my_resumes_create.html'
-import { resumes } from '/imports/api/resumes/collections/resumes.js'
+import { resumes } from '/imports/api/resumes/resumes.js'
 import '../form/resume_form.js'
+import {Resume} from "/imports/api/resumes"
 
 Template.my_resumes_create.helpers({
   submitTitle() {
@@ -10,15 +11,12 @@ Template.my_resumes_create.helpers({
   onSubmit() {
     return (data) => {
       console.log(data)
-      Meteor.call(
-        'resumes.insert',
-        data,
-        (error, result) => {
-          if (!error) {
-            FlowRouter.go('/my/resumes')
-          }
+      const resume = new Resume()
+      resume.add(data, (error, result) => {
+        if (!error) {
+          FlowRouter.go('/my/resumes')
         }
-      )
+      })
     }
   }
 })

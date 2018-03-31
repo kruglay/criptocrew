@@ -1,32 +1,29 @@
 <template name="my_resumes">
-  <div class="pull-right">
-    <a href="/my/resumes/new" class="btn btn-primary">Create new</a>
-  </div>
-  <h1>My resumes</h1>
-  {{#if canCreate}}
-    {{#if resumes.count}}
-      <ul class="list-group resumes">
-        {{#each resume in resumes}}
-          <li class="list-group-item">
-            <p>
-              <a href="{{resume.url}}" target="_blank"><b>{{resume.title}}</b></a>
-             {{#if resume.isPublic}}
-                 <span class="label label-primary">Public</span>
-             {{/if}}
-            </p>
-            <a href="/my/resumes/{{resume._id}}" class="btn btn-default">{{_ "edit"}}</a>
-            <a href="#" class="delete btn btn-danger" data-id="{{resume._id}}">{{_ "delete"}}</a>
-            {{#if resume.isPublic}}
-            {{else}}
-              <a href="#" class="makePublic btn btn-warning" data-id="{{resume._id}}">Make public</a>
-            {{/if}}
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      <p>You have no resumes. <a href="/my/resumes/new">Create one</a></p>
-    {{/if}}
-  {{else}}
-  <p>You can't create resumes until <a href="/my/profile">profile</a> is not filled</p>
-  {{/if}}
+	<div class="pull-right">
+		<a href="/my/resumes/new" class="btn btn-primary">Create new</a>
+	</div>
+	<h1>My resumes</h1>
+	{{#if resumes.count}}
+		<ul class="list-group resumes">
+			{{#each resume in resumes}}
+				<li class="list-group-item">
+					<p>
+						<a href="{{resume.url}}" target="_blank"><b>{{resume.title}}</b></a>
+						{{#if resume.isPublic}}
+							<span class="label label-primary">Public</span>
+						{{/if}}
+					</p>
+					<a href="/my/resumes/{{resume._id}}" class="btn btn-default">{{_ "edit"}}</a>
+					<a href="#" class="delete btn btn-danger" data-id="{{resume._id}}">{{_ "delete"}}</a>
+					{{#if resume.isPublic}}
+					{{else}}
+						<a href="#" class="makePublic btn btn-warning" data-id="{{resume._id}}">Make public</a>
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	{{else}}
+		<p>You have no resumes. <a href="/my/resumes/new">Create one</a></p>
+	{{/if}}
+
 </template>

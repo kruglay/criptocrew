@@ -1,5 +1,4 @@
 import './profile_bar.html'
-import { profiles } from '/imports/api/profiles/collections/profiles.js'
 
 Template.profile_bar.events({
   'click .logout' (e, t) {
@@ -10,13 +9,9 @@ Template.profile_bar.events({
 
 Template.profile_bar.helpers({
   username () {
-    const profile = profiles.findOne({
-      _user: Meteor.userId()
-    })
-    if (profile) {
-      return profile.name
+    const user = User.findOne(Meteor.userId())
+    if(user) {
+      return user.getName()
     }
-
-    return Meteor.user().emails[0].address
   }
 })
