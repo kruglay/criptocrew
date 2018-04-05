@@ -1,3 +1,3 @@
-import './routes.js'
-import '/imports/ui/pages'
-import '/imports/ui/form'
+console.log('startup.client.index')
+import './routes'
+// import '/imports/ui/form';

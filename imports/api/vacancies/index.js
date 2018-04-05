@@ -1,4 +1,4 @@
-import {Vacanсy} from "/imports/api/vacancies/vacancies"
+import {Vacancy} from "/imports/api/vacancies/vacancies"
 import "./publications"
 
-export {Vacanсy}
+export {Vacancy}

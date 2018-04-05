@@ -1,0 +1,17 @@
+<template name="uploader">
+	<div class="uploader {{class}}">
+		<div class="uploader-preview text-centred">
+			<a href="#" class="js-uploader-action">
+				{{>thumbnail url=currentValue class=thumbnailClass}}
+			</a>
+		</div>
+		<div class="uploader-caption" style="display: none">
+			<input type="file" style="display: none;">
+			<input
+				type="text"
+				name="{{name}}"
+				placeholder="{{placeholder}}"
+				value="{{currentValue}}">
+		</div>
+	</div>
+</template>

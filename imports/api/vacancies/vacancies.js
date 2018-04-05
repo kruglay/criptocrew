@@ -1,9 +1,11 @@
-import {Class} from 'meteor/jagi:astronomy'
+// import {Class} from 'meteor/jagi:astronomy'
+;import { Class } from 'meteor/jagi:astronomy';
+// const Class = require('meteor/jagi:astronomy').Class
 
 const collection = new Mongo.Collection("vacancies")
 
-const Vacanсy = Class.create({
-  name: "Vacanсy",
+const Vacancy = Class.create({
+  name: "Vacancy",
   collection,
   behaviors: {
     timestamp: {
@@ -39,4 +41,4 @@ const Vacanсy = Class.create({
   }
 })
 
-export {Vacanсy}
+export {Vacancy}

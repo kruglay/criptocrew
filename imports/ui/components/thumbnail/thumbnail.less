@@ -1,0 +1,65 @@
+.thumbnail {
+	display: inline-block;
+	width: 3rem;
+	height: 3rem;
+	background-size: auto 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	&-group {
+		display: flex;
+		flex-flow: wrap;
+		.thumbnail {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
+
+	&-spinner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		width: 100%;
+	}
+
+	&--busy {
+		background-image: none !important;
+	}
+
+	&--idle {
+		.thumbnail-spinner {
+			visibility: hidden;
+		}
+	}
+
+	&--smaller {
+		height: 2rem;
+		width: 2rem;
+	}
+
+	&--bigger {
+		height: 5rem;
+		width: 5rem;
+	}
+
+	&--huge {
+		height: 7rem;
+		width: 7rem;
+	}
+
+	&--monster {
+		height: 12rem;
+		width: 12rem;
+	}
+
+	&--rounded {
+		border-radius: 50%;
+		overflow: hidden;
+	}
+
+	&--bordered {
+		border: 2px solid #ccc;
+	}
+
+}

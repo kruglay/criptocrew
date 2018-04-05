@@ -19,8 +19,6 @@ shell-server@0.3.1            # Server-side component of the `meteor shell` comm
 
 autopublish@1.0.7             # Publish all data to the clients (for prototyping)
 insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
-kadira:flow-router
-kadira:blaze-layout
 accounts-ui
 accounts-password
 accounts-facebook
@@ -28,14 +26,14 @@ accounts-google
 check
 aldeed:simple-schema
 reactive-dict
-useraccounts:bootstrap
-twbs:bootstrap
 useraccounts:flow-routing
-arillo:flow-router-helpers
 suxez:jquery-serialize-object
 tap:i18n
 fortawesome:fontawesome
 dburles:collection-helpers
 less
-jagi:astronomy
 jagi:astronomy-timestamp-behavior
+mealsunite:flow-routing-extra
+kadira:flow-router
+kadira:blaze-layout
+jagi:astronomy

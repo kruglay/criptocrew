@@ -1,6 +1,8 @@
-import { FlowRouter } from 'meteor/kadira:flow-router'
-import { BlazeLayout } from 'meteor/kadira:blaze-layout'
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+
 import '/imports/ui/layouts/default/default_layout'
+import '/imports/ui/pages/auth/auth'
 
 FlowRouter.notFound = {
   action: function() {
@@ -13,6 +15,12 @@ FlowRouter.notFound = {
 FlowRouter.route('/', {
   action () {
     BlazeLayout.render('default_layout', { page: 'home' })
+  }
+})
+
+FlowRouter.route('/auth/:state', {
+  action({state}) {
+    BlazeLayout.render('default_layout', { page: 'auth', state })
   }
 })
 
@@ -105,5 +113,4 @@ myRoutes.route('/resumes/:id', {
   }
 })
 
-AccountsTemplates.configureRoute('signIn')
 AccountsTemplates.configureRoute('changePwd')
