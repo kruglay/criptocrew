@@ -2,12 +2,12 @@
 	<form class="js-form-auth">
 		<input type="email" name="email" placeholder="введите ваш email" class="js-email" required>
 		<input type="password" name="password" placeholder="password" class="js-password" required>
-		{{#if isRegister}}
-			<input type="password" name="confirmPassword" placeholder="password" class="js-password-confirm" required>
+		{{#if signUp}}
+			<input type="password" name="confirmPassword" placeholder="password" class="js-confirm-password" required>
 		{{/if}}
 		<div class="notification {{show}}" >
 			Пароли должны совпадать
 		</div>
-		<input type="submit" value="Применить" class="js-auth-submit">
+		<input type="submit" value={{submitValue}} class="js-auth-submit">
 	</form>
 </template>

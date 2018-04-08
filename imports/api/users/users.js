@@ -1,5 +1,4 @@
 import {Class, Enum} from 'meteor/jagi:astronomy'
-console.log('users.js')
 
 const collection = Meteor.users
 
@@ -118,6 +117,155 @@ const defaultAdditional = () => ([
   }
 ])
 
+const Personal = Class.create({
+  name: 'Personal',
+  fields: {
+    firstName: {
+      type: String,
+      default: "",
+    },
+    lastName: {
+      type: String,
+      default: "",
+    },
+    middleName: {
+      type: String,
+      default: ""
+    },
+    sex: {
+      name: String,
+      type: sex,
+      default: sex.MALE
+    },
+    dateOfBirth: {
+      type: Date,
+      optional: true,
+    },
+    city: {
+      type: cities,
+      optional: true
+    },
+    about: {
+      type: String,
+      optional: true
+    },
+    webUrl: {
+      type: String,
+      optional: true
+    },
+    avatar: {
+      type: String,
+      optional: true
+    }
+  },
+})
+
+const Specialization = Class.create({
+  name: 'Specialization',
+  fields: {
+    searchStatus: {
+      type: searchStatus,
+      default: searchStatus.getIdentifier(2)
+    },
+    personalSpecialization: {
+      type: String,
+      optional: true
+    },
+    additional: {
+      type:[Object],
+      name: {
+        type: String,
+        immutable: true
+      },
+      title: {
+        type: String,
+        immutable: true
+      },
+      value: Boolean,
+      default: defaultAdditional,
+      immutable: true,
+    },
+    divisions: {
+      type:[Object],
+      name: {
+        type: String,
+        immutable: true
+      },
+      title: {
+        type: String,
+        immutable: true
+      },
+      value: Boolean,
+      default: defaultDivisions,
+      immutable: true,
+    },
+    skills: [String]
+  }
+})
+
+const Experience = Class.create({
+  name: 'Experience',
+  fields: {
+    companyName: String,
+    position: String,
+    location: {
+      type: String,
+      optional: true,
+    },
+    startDate: Date,
+    endDate: {
+      type: Date,
+      default: () => new Date()
+    },
+    responsibilities: {
+      type: String,
+      optional: true,
+    }
+  }
+})
+
+const Education = Class.create({
+  name: 'Education',
+  fields: {
+    location: {
+      type: String,
+      optional: true
+    },
+    name: String,
+    faculty: {
+      type: String,
+      optional: true
+    },
+    startDate: Date,
+    endDate: {
+      type: Date,
+      default: () => new Date()
+    },
+    additional: {
+      type: String,
+      optional: true,
+    }
+  }
+})
+
+const Contacts = Class.create({
+  name: 'Contacts',
+  fields: {
+    telephone: {
+      type: [String],
+      optional: true,
+    },
+    emails: {
+      type: [String],
+      optional: true,
+    },
+    webUrls: {
+      type: [String],
+      optional: true,
+    },
+  }
+})
+
 const User = Class.create({
   name: "User",
   collection,
@@ -132,159 +280,41 @@ const User = Class.create({
   fields: {
     createdAt: Date,
     updatedAt: Date,
+    emails: {
+      type: [String],
+      default: function () {
+        return []
+      }
+    },
     role: {
       type: String,
       default: 'user',
     },
 
     profile: {
+      type: Object,
       personal: {
-        firstName: {
-          type: String,
-          default: "",
-        },
-        lastName: {
-          type: String,
-          default: "",
-        },
-        middleName: {
-          type: String,
-          default: ""
-        },
-        sex: {
-          name: String,
-          type: sex,
-          default: sex.MALE
-        },
-        dateOfBirth: {
-          type: Date,
-          optional: true,
-        },
-        city: {
-          type: cities,
-          optional: true
-        },
-        about: {
-          type: String,
-          optional: true
-        },
-        webUrl: {
-          type: String,
-          optional: true
-        },
-        avatar: {
-          type: String,
-          optional: true
-        }
+        type: Personal,
+        optional: true,
       },
 
       specialization: {
-        type: {
-          searchStatus: {
-            type: searchStatus,
-            default: searchStatus.getIdentifier(2)
-          },
-          personalSpecialization: {
-            type: String,
-            optional: true
-          },
-          additional: {
-            type:
-              [{
-                name: {
-                  type: String,
-                  immutable: true
-                },
-                title: {
-                  type: String,
-                  immutable: true
-                },
-                value: Boolean
-              }],
-            default: defaultAdditional,
-            immutable: true,
-          },
-          divisions: {
-            type:
-              [{
-                name: {
-                  type: String,
-                  immutable: true
-                },
-                title: {
-                  type: String,
-                  immutable: true
-                },
-                value: Boolean
-              }],
-            default: defaultDivisions,
-            immutable: true,
-          },
-          skills: [String]
-        },
+        type: Specialization,
         optional: true
       },
 
       experiences: {
-        type: [{
-          companyName: String,
-          position: String,
-          location: {
-            type: String,
-            optional: true,
-          },
-          startDate: Date,
-          endDate: {
-            type: Date,
-            default: () => new Date()
-          },
-          responsibilities: {
-            type: String,
-            optional: true,
-          }
-        }],
+        type: [Experience],
         optional: true
       },
 
       educations: {
-        type: [{
-          location: {
-            type: String,
-            optional: true
-          },
-          name: String,
-          faculty: {
-            type: String,
-            optional: true
-          },
-          startDate: Date,
-          endDate: {
-            type: Date,
-            default: () => new Date()
-          },
-          additional: {
-            type: String,
-            optional: true,
-          }
-        }],
+        type: [Education],
         optional: true
       },
 
       contacts: {
-        type: {
-          telephone: {
-            type: [String],
-            optional: true,
-          },
-          emails: {
-            type: [String],
-            optional: true,
-          },
-          webUrls: {
-            type: [String],
-            optional: true,
-          },
-        },
+        type: Contacts,
         optional: true
       }
     }
@@ -293,7 +323,8 @@ const User = Class.create({
 
   meteorMethods: {
     add(data) {
-      return Accounts.createUser({email: data.email, password: data.password})
+      const userId = Accounts.createUser({email: data.email, password: data.password})
+      return userId
     },
 
     patch(data) {

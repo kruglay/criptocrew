@@ -13,7 +13,9 @@ FlowRouter.notFound = {
 }
 
 FlowRouter.route('/', {
+  name: 'index',
   action () {
+    console.log('index')
     BlazeLayout.render('default_layout', { page: 'home' })
   }
 })
