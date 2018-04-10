@@ -1,0 +1,9 @@
+<template name="select">
+	<select name={{name}} class={{class}}>
+		{{#each option in options}}
+			<option class={{option.class}} value={{option.value}} selected={{option.selected}} label={{option.label}}>
+				{{option.textValue}}
+			</option>
+		{{/each}}
+	</select>
+</template>

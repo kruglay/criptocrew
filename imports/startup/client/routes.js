@@ -2,7 +2,8 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '/imports/ui/layouts/default/default_layout'
-import '/imports/ui/pages/auth/auth'
+import '/imports/ui/pages/auth'
+import '/imports/ui/pages/profile'
 
 FlowRouter.notFound = {
   action: function() {
@@ -20,11 +21,8 @@ FlowRouter.route('/', {
   }
 })
 
-FlowRouter.route('/auth/:state', {
-  action({state}) {
-    BlazeLayout.render('default_layout', { page: 'auth', state })
-  }
-})
+// FlowRouter.route('/')
+
 
 FlowRouter.route('/vacancies', {
   action () {
@@ -44,75 +42,49 @@ FlowRouter.route('/resumes', {
   }
 })
 
-
-const myRoutes = FlowRouter.group({
-  prefix: '/my',
-  name: 'my',
-  triggersEnter: [(context, redirect) => {
-    if (!Meteor.userId()) {
-      return redirect('/')
+const authRoutes = FlowRouter.group({
+  prefix: '/auth',
+  name: 'auth',
+  triggersEnter: [function(context, redirect) {
+    if(Meteor.userId()) {
+      FlowRouter.redirect('/')
     }
+  }]
+});
+
+authRoutes.route('/sign-in', {
+  name: 'auth.signin',
+  action() {
+    console.log('auth.signin')
+    BlazeLayout.render('default_layout', {page: 'signin'})
+  }
+})
+
+authRoutes.route('/sign-up', {
+  name: 'auth.signup',
+  action() {
+    console.log('auth.signup')
+    BlazeLayout.render('default_layout', {page: 'signup'})
+  }
+})
+
+const profileRoutes = FlowRouter.group({
+  prefix: '/profile',
+  name: 'profile',
+  triggersEnter: [function(context, redirect) {
+    console.log('running group profile');
   }]
 })
 
-myRoutes.route('/profile', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'my_profile' })
+profileRoutes.route('/personal', {
+  name: 'profile.personal',
+  action() {
+    BlazeLayout.render('default_layout', {page: 'personal'})
   }
 })
 
-myRoutes.route('/vacancies', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'my_vacancies' })
-  }
-})
 
-myRoutes.route('/vacancies/:id', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'my_vacancies_edit' })
-  }
-})
 
-myRoutes.route('/publish-vacancy', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'publish_vacancy' })
-  }
-})
 
-myRoutes.route('/companies', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'my_companies' })
-  }
-})
-
-myRoutes.route('/companies/new', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'my_companies_create' })
-  }
-})
-
-myRoutes.route('/companies/:id', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'my_companies_edit' })
-  }
-})
-
-myRoutes.route('/resumes', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'my_resumes' })
-  }
-})
-
-myRoutes.route('/resumes/new', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'my_resumes_create' })
-  }
-})
-
-myRoutes.route('/resumes/:id', {
-  action () {
-    BlazeLayout.render('default_layout', { page: 'my_resumes_edit' })
-  }
-})
-
+// AccountsTemplates.configureRoute('signIn')
 AccountsTemplates.configureRoute('changePwd')

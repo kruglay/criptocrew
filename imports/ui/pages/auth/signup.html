@@ -1,0 +1,11 @@
+<template name="signup">
+	<form class="js-form-signup">
+		<input type="email" name="email" placeholder="введите ваш email" class="js-email" required>
+		<input type="password" name="password" placeholder="password" class="js-password" required>
+		<input type="password" name="confirmPassword" placeholder="password" class="js-confirm-password" required>
+		<div class="notification {{showPasswordNotification}}" >
+			Пароли должны совпадать
+		</div>
+		<input type="submit" value="Зарегистрироваться" class="js-signup-submit">
+	</form>
+</template>

@@ -1,0 +1,41 @@
+<template name="personal">
+	<form class="js-form-personal">
+		{{>uploader
+			name = 'avatar'
+			value=currentUser.profile.personal.avatar
+		}}
+		<input type="text" placeholder="Ваше имя" name="firstName" class="form-control" value={{currentUser.profile.personal.firstName}}>
+		<input type="text" placeholder="Ваша фамилия" name="lastName" class="form-control" value={{currentUser.profile.personal.lastName}}>
+		<input type="text" placeholder="Ваше отчество" name="middleName" class="form-control" value={{currentUser.profile.personal.middleName}}>
+		{{#radio_group defaultValue=0 value=currentUser.profile.personal.sex}}
+			{{> radio_button
+				name='sex'
+				key='male'
+				label='Male'
+				value=0
+			}}
+			{{> radio_button
+				name='sex'
+				key='female'
+				label='Female'
+				value=1
+			}}
+		{{/radio_group}}
+		<div class="form-group">
+			<div class='input-group date datetimepicker'>
+				<input type='text' class="form-control" value={{getDate currentUser.profile.personal.dateOfBirth 'L'}} name="dateOfBirth"/>
+				<span class="input-group-addon">
+        	<span class="glyphicon glyphicon-calendar"></span>
+        </span>
+			</div>
+		</div>
+		{{> select
+			name='city'
+			options=cityOptions
+			class='form-control'
+		}}
+
+		<input type="text" class="form-control" placeholder="Адрес вашего сайта">
+		<input type="submit" class="btn btn-default js-submit" value="Сохранить">
+	</form>
+</template>

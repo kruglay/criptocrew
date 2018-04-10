@@ -31,3 +31,7 @@ useraccounts:flow-routing
 suxez:jquery-serialize-object
 jagi:astronomy-timestamp-behavior
 twbs:bootstrap
+arillo:flow-router-helpers
+momentjs:moment
+tsega:bootstrap3-datetimepicker
+rzymek:moment-locale-ru

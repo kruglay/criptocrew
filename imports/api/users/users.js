@@ -1,21 +1,10 @@
 import {Class, Enum} from 'meteor/jagi:astronomy'
+import {searchStatus} from '/imports/api/enums/enums'
+import {Personal} from '/imports/api/classes/personal'
 
+
+//todo add validations
 const collection = Meteor.users
-
-const sex = Enum.create({
-  name: 'sex',
-  identifiers: ["MALE", "FEMALE"]
-})
-
-const cities = Enum.create({
-  name: 'city',
-  identifiers: ['Moscow', 'St.Petersburg']
-})
-
-const searchStatus = Enum.create({
-  name: 'searchStatus',
-  identifiers: ['ищу работу', 'открыт к предложениям', 'не ищу работу']
-})
 
 const defaultDivisions = () => ([
   {
@@ -116,49 +105,6 @@ const defaultAdditional = () => ([
     value: false
   }
 ])
-
-const Personal = Class.create({
-  name: 'Personal',
-  fields: {
-    firstName: {
-      type: String,
-      default: "",
-    },
-    lastName: {
-      type: String,
-      default: "",
-    },
-    middleName: {
-      type: String,
-      default: ""
-    },
-    sex: {
-      name: String,
-      type: sex,
-      default: sex.MALE
-    },
-    dateOfBirth: {
-      type: Date,
-      optional: true,
-    },
-    city: {
-      type: cities,
-      optional: true
-    },
-    about: {
-      type: String,
-      optional: true
-    },
-    webUrl: {
-      type: String,
-      optional: true
-    },
-    avatar: {
-      type: String,
-      optional: true
-    }
-  },
-})
 
 const Specialization = Class.create({
   name: 'Specialization',
@@ -280,12 +226,6 @@ const User = Class.create({
   fields: {
     createdAt: Date,
     updatedAt: Date,
-    emails: {
-      type: [String],
-      default: function () {
-        return []
-      }
-    },
     role: {
       type: String,
       default: 'user',
@@ -316,21 +256,18 @@ const User = Class.create({
       contacts: {
         type: Contacts,
         optional: true
-      }
+      },
+
+      default: {}
     }
 
   },
 
   meteorMethods: {
     add(data) {
-      const userId = Accounts.createUser({email: data.email, password: data.password})
+      const userId = Accounts.createUser({email: data.email, password: data.password, profile: {}})
       return userId
     },
-
-    patch(data) {
-      this.set(data)
-      return this.save()
-    }
   },
 
   helpers: {
@@ -340,5 +277,26 @@ const User = Class.create({
     }
   }
 })
+
+if(Meteor.isServer) {
+  User.extend({
+    meteorMethods: {
+      patch(data, options) {
+        const doc = data.data,
+          field = data.field
+
+        if(field) {
+          this.set(field, doc, options)
+        } else {
+          this.set(doc, options)
+        }
+        return this.save()
+      }
+    }
+  })
+}
+
+
+
 
 export {User}

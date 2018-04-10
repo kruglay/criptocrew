@@ -1,20 +1,19 @@
 <template name="pfofile_badge">
 	{{#if currentUser}}
 	<fieldset>
-		{{>uploader
-			name = 'profile[personal][avatar]'
-			value=currentUser.profile.personal.avatar
+		{{>thumbnail
+			url=currentUser.profile.personal.avatar
 		}}
 		<div>
 			{{name}}
 		</div>
-		<a href="/profile/edit" class='js-edit'>Настройка профиля</a>
-		<a href="/" class='js-exit'>Выход</a>
+		<a href={{pathFor 'profile.personal'}} class='js-edit'>Настройка профиля</a>
+		<a href={{pathFor 'auth.index'}} class='js-exit'>Выход</a>
 	</fieldset>
 	{{else}}
 		<fieldset>
-			<a href="/auth/signIn" class='js-signIn'>Войти</a>
-			<a href="/auth/signUp" class='js-signUp'>Зарегистрироваться</a>
+			<a href={{pathFor 'auth.signin'}} class='js-signIn'>Войти</a>
+			<a href={{pathFor 'auth.signup'}} class='js-signUp'>Зарегистрироваться</a>
 		</fieldset>
 	{{/if}}
 </template>

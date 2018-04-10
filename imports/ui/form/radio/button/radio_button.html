@@ -1,8 +1,6 @@
 <template name="radio_button">
-  <div class="radio radio-primary">
-    <input type="radio" name="{{name}}" id="{{key}}" value="{{value}}" checked>
-    <label for="{{key}}">
-      {{label}}
-    </label>
-  </div>
+	<label class="btn btn-default" for={{key}}>
+		<input type="radio" name="{{name}}" id="{{key}}" value="{{value}}">
+		{{label}}
+	</label>
 </template>
