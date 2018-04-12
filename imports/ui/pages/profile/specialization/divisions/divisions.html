@@ -1,0 +1,13 @@
+<template name="divisions">
+	<div class="form-group js-divisions">
+		Сфера вашей деятельности
+		{{#each division in divisions}}
+			{{> checkbox
+				name='divisions'
+				value=(getDivisionValue division)
+				label=division.title
+				onChange=(handleChange division.name)
+			}}
+		{{/each}}
+	</div>
+</template>

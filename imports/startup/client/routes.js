@@ -4,6 +4,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import '/imports/ui/layouts/default/default_layout'
 import '/imports/ui/pages/auth'
 import '/imports/ui/pages/profile'
+import '/imports/ui/pages/user/user'
 
 FlowRouter.notFound = {
   action: function() {
@@ -12,6 +13,21 @@ FlowRouter.notFound = {
     })
   }
 }
+
+// FlowRouter.route('/users', {
+//   name: 'users',
+//   action() {
+//     BlazeLayout.render('default_layout', {page: 'users'})
+//   }
+// })
+
+FlowRouter.route('/users/:_userId', {
+  name: 'user',
+  action() {
+    console.log('/users/:_userId')
+    BlazeLayout.render('default_layout', {page: 'user'})
+  }
+})
 
 FlowRouter.route('/', {
   name: 'index',
@@ -46,6 +62,7 @@ const authRoutes = FlowRouter.group({
   prefix: '/auth',
   name: 'auth',
   triggersEnter: [function(context, redirect) {
+    console.log('auth')
     if(Meteor.userId()) {
       FlowRouter.redirect('/')
     }
@@ -80,6 +97,13 @@ profileRoutes.route('/personal', {
   name: 'profile.personal',
   action() {
     BlazeLayout.render('default_layout', {page: 'personal'})
+  }
+})
+
+profileRoutes.route('/specialization', {
+  name: 'profile.specialization',
+  action() {
+    BlazeLayout.render('default_layout', {page: 'specialization'})
   }
 })
 

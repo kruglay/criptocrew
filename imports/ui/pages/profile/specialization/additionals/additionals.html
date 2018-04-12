@@ -1,0 +1,13 @@
+<template name="additionals">
+	<div class="form-group js-additionals">
+		Дополнительно
+		{{#each additional in additionals}}
+			{{> checkbox
+				name='additionals'
+				value=(getAdditionalValue additional)
+				label=additional.title
+				onChange=(handleChange additional.name)
+			}}
+		{{/each}}
+	</div>
+</template>

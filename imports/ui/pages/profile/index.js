@@ -1,1 +1,2 @@
-import './personal'
+import './personal/personal'
+import './specialization/specialization'

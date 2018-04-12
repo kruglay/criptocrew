@@ -7,7 +7,7 @@
 		<div>
 			{{name}}
 		</div>
-		<a href={{pathFor 'profile.personal'}} class='js-edit'>Настройка профиля</a>
+		<a href={{pathFor 'user' _userId=currentUser._id}} class='js-edit'>Настройка профиля</a>
 		<a href={{pathFor 'auth.index'}} class='js-exit'>Выход</a>
 	</fieldset>
 	{{else}}

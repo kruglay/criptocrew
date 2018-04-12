@@ -1,0 +1,15 @@
+<template name="input_filter">
+	<div class="input-group js-filter-input-group">
+		<div class="input-group-btn">
+			<button class="btn btn-default js-button">
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu js-dropdown-menu">
+				{{#each value in values}}
+					<li class="js-value"><a href="#">{{value}}</a></li>
+				{{/each}}
+			</ul>
+		</div>
+		<input type="text" class="form-control js-filter-input {{inputClass}}" placeholder={{placeholder}} name={{name}} value={{inputValue}}>
+	</div>
+</template>

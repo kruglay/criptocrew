@@ -1,0 +1,28 @@
+<template name="specialization">
+	<form class="js-form-specialization">
+		{{> select
+			name='searchStatus'
+			options=(getStatusOptions currentUser.profile.specialization.searchStatus)
+			class='form-control'
+		}}
+		<div class="form-inline">
+			<div class="form-group">
+				<input type="text" class="form-control" name="salary" placeholder="Ожидаемое вознаграждение" value={{currentUser.profile.specialization.salary}}>
+				{{> select
+					name='currency'
+					options=(getCurrencyOptions currentUser.profile.specialization.currency)
+					class='form-control'
+				}}
+			</div>
+		</div>
+		<input type="text" class="form-control" name="personalSpecialization" placeholder="Ваша специализация" value={{currentUser.profile.specialization.personalSpecialization}}>
+		{{> additionals profileAdditionals=profileAdditionals}}
+
+		{{> divisions profileDivisions=profileDivisions}}
+
+		{{> skills profileSkills=profileSkills}}
+
+		<input type="submit" value="Сохранить" class="btn btn-default js-submit">
+	</form>
+
+</template>

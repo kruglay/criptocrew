@@ -1,6 +1,6 @@
 import './personal.html'
 import {cities} from '/imports/api/enums/enums'
-import {User} from '/imports/api/users'
+import {User} from '/imports/api/users/index'
 import {Handlers} from '/imports/ui/utils/handlers'
 import {Personal} from '/imports/api/classes/personal'
 
@@ -44,7 +44,9 @@ Template.personal.events({
       'patch',
       {field: 'profile', data: {personal}},
       {merge: true},
-      Handlers.default()
+      Handlers.default((err, res) => {
+        if (!err) FlowRouter.go(`/users/${Meteor.userId()}`)
+      })
     )
   }
 })

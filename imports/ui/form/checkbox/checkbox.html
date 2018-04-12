@@ -1,8 +1,8 @@
 <template name="checkbox">
-  <div class="checkbox checkbox-primary">
-    <input id="{{name}}" class="styled" type="checkbox" checked>
-    <label for="{{name}}">
-      {{label}}
+  <div class={{class}}>
+		<label for="{{name}}">
+			<input class="styled js-checkbox" name={{name}} type="checkbox">
+			{{label}}
     </label>
   </div>
 </template>

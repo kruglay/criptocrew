@@ -1,0 +1,21 @@
+<template name="skills">
+	<div class="form-group js-skills">
+		{{#each skill in profileSkills}}
+			<div class="form-inline">
+				{{>input_filter
+					values=skills
+					placeholder='Профессиональный навык'
+					inputValue=skill
+					inputClass=(getKey skill)
+					name='skills'
+				}}
+				<button class="btn btn-default js-button-remove {{getKey skill}}">X</button>
+			</div>
+
+		{{/each}}
+
+		<button class="btn btn-default js-add-skill" {{disabled}}>
+			Добавить навык
+		</button>
+	</div>
+</template>
