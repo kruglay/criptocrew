@@ -16,11 +16,11 @@
 			</div>
 		</div>
 		<input type="text" class="form-control" name="personalSpecialization" placeholder="Ваша специализация" value={{currentUser.profile.specialization.personalSpecialization}}>
-		{{> additionals profileAdditionals=profileAdditionals}}
+		{{!--> additionals profileAdditionals=currentUser.profile.specialization.additionals--}}
 
-		{{> divisions profileDivisions=profileDivisions}}
+		{{!--> divisions profileDivisions=currentUser.profile.specialization.divisions--}}
 
-		{{> skills profileSkills=profileSkills}}
+		{{> skills profileSkills=currentUser.profile.specialization.skills}}
 
 		<input type="submit" value="Сохранить" class="btn btn-default js-submit">
 	</form>

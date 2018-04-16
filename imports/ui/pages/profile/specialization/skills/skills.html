@@ -1,5 +1,6 @@
 <template name="skills">
-	<div class="form-group js-skills">
+	<div class="js-skills">
+		{{!--
 		{{#each skill in profileSkills}}
 			<div class="form-inline">
 				{{>input_filter
@@ -13,9 +14,13 @@
 			</div>
 
 		{{/each}}
-
-		<button class="btn btn-default js-add-skill" {{disabled}}>
-			Добавить навык
-		</button>
+		--}}
+				{{> select
+					name='skills'
+					multiple='multiple'
+					class='form-control'
+					turnOnSelect2=true
+					params=getSkillsParams
+				}}
 	</div>
 </template>

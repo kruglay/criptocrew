@@ -1,4 +1,6 @@
 //personal.profile.city
+import {cities} from '/imports/api/enums/enums'
+
 export function addFieldToObject(object = {}, {key, value}) {
   console.log(key, value, object)
   const segments = key.split('.'),
@@ -146,4 +148,23 @@ export const additionals = () => ([
   }
 ])
 
-export const skills = ['React.js', 'Node.js', 'Git']
+export function getCityOptions(value) {
+  const identifiers = cities.getIdentifiers(),
+    options = []
+  identifiers.forEach((el, i) => {
+    const option = {
+      textValue: el,
+      value: i,
+    }
+    if(value ? value === i : i === 0) {
+      option.selected = '1'
+    }
+    options.push(option)
+  })
+  return options
+}
+
+export const skills = [
+  'React.js', 'Node.js', 'Git', 'Redux', 'Meteor.js',
+  'Ruby on Rails', 'SQL', 'CSS', 'HTML', 'JavaScript'
+]

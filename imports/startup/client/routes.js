@@ -107,7 +107,27 @@ profileRoutes.route('/specialization', {
   }
 })
 
+profileRoutes.route('/experiences', {
+  name: 'profile.experiences',
+  action() {
+    BlazeLayout.render('default_layout', {page: 'experiences'})
+  }
+})
 
+profileRoutes.route('/experiences/new', {
+  name: 'profile.experiences.new',
+  action(params) {
+    BlazeLayout.render('default_layout', {page: 'experience'})
+  }
+})
+
+profileRoutes.route('/experiences/:experienceId', {
+  name: 'profile.experiences.id',
+  action(params) {
+    // console.log('experienceId', params)
+    BlazeLayout.render('default_layout', {page: 'experience'})
+  }
+})
 
 
 // AccountsTemplates.configureRoute('signIn')

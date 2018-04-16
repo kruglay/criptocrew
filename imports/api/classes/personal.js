@@ -26,7 +26,10 @@ const Personal = Class.create({
     },
     city: {
       type: cities,
-      optional: true
+      optional: true,
+      cast(value) {
+        return Number(value)
+      }
     },
     about: {
       type: String,
@@ -43,7 +46,14 @@ const Personal = Class.create({
   },
   helpers: {
 
+  },
+
+  events: {
+    beforeSave(e) {
+      console.log('beforeSave(e)', e.target, e.currentTarget)
+    }
   }
+
 })
 
 Personal.castValues = data => {

@@ -1,0 +1,13 @@
+<template name="experiences">
+	<div class="list-group js-experiences">
+		<div class="form-inline">
+			<span>Опыт работы</span>
+			<a href={{pathFor 'experiences.new'}}>Добавить место работы</a>
+		</div>
+		{{#each experience in experiences}}
+			{{> experience_item}}
+		{{/each}}
+	</div>
+
+
+</template>

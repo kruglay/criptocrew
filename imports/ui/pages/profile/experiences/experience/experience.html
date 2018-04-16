@@ -1,0 +1,58 @@
+<template name="experience">
+	<form class="js-form-experience">
+		<div class="form-group">
+			<label for="companyName">Компания</label>
+			<input type="text" class="form-control" name="companyName" value={{experience.companyName}}>
+		</div>
+
+		<div class="form-group">
+			<label for="position">Должность</label>
+			<input type="text" class="form-control" name="position" value={{experience.position}}>
+		</div>
+
+		<div class="form-group">
+			<label for="location">Город</label>
+
+			{{> select
+				name='location'
+				class='js-select-city'
+				options=(getCityOptions experience.location)
+				turnOnSelect2=true
+			}}
+		</div>
+
+		<div class="form-inline">
+			{{> datetimepicker_icon
+				name='startDate'
+				value=experience.startDate
+				label='Дата начала'
+				formatDate='MMMM YYYY'
+			}}
+		</div>
+
+		<div class="form-inline">
+			{{> datetimepicker_icon
+				name='endDate'
+				value=experience.endDate
+				label='Дата окончания'
+				formatDate='MMMM YYYY'
+				class='js-end-date'
+			}}
+			{{> checkbox
+				name='stillWorking'
+				label='По текущее время'
+				value=experience.stillWorking
+				class='form-group js-still-working'
+			}}
+		</div>
+
+		<div class="form-group">
+			<label for="responsibilities">Должностные обязанности</label>
+			<textarea name="responsibilities" rows="10" class="form-control">
+				{{experience.responsibilities}}
+			</textarea>
+		</div>
+
+		<input type="submit" class="btn btn-default js-submit-experience" value="Сохранить">
+	</form>
+</template>

@@ -2,31 +2,12 @@ import {Class, Enum} from 'meteor/jagi:astronomy'
 import {searchStatus} from '/imports/api/enums/enums'
 import {Personal} from '/imports/api/classes/personal'
 import {Specialization} from '/imports/api/classes/specialization'
+import {Experience} from '/imports/api/classes/experience'
+import {Profile} from '/imports/api/classes/profile'
 
 
 //todo add validations
 const collection = Meteor.users
-
-const Experience = Class.create({
-  name: 'Experience',
-  fields: {
-    companyName: String,
-    position: String,
-    location: {
-      type: String,
-      optional: true,
-    },
-    startDate: Date,
-    endDate: {
-      type: Date,
-      default: () => new Date()
-    },
-    responsibilities: {
-      type: String,
-      optional: true,
-    }
-  }
-})
 
 const Education = Class.create({
   name: 'Education',
@@ -43,7 +24,6 @@ const Education = Class.create({
     startDate: Date,
     endDate: {
       type: Date,
-      default: () => new Date()
     },
     additional: {
       type: String,
@@ -70,6 +50,8 @@ const Contacts = Class.create({
   }
 })
 
+
+
 const User = Class.create({
   name: "User",
   collection,
@@ -90,33 +72,8 @@ const User = Class.create({
     },
 
     profile: {
-      type: Object,
-      personal: {
-        type: Personal,
-        optional: true,
-      },
-
-      specialization: {
-        type: Specialization,
-        optional: true
-      },
-
-      experiences: {
-        type: [Experience],
-        optional: true
-      },
-
-      educations: {
-        type: [Education],
-        optional: true
-      },
-
-      contacts: {
-        type: Contacts,
-        optional: true
-      },
-
-      default: {}
+      type: Profile,
+      default: () => new Profile()
     }
 
   },
@@ -142,6 +99,16 @@ if(Meteor.isServer) {
       patch(data, options) {
         const doc = data.data,
           field = data.field
+        //save experiences
+        if(data.experience) {
+          if(options.newInstance) {
+            this.profile.experiences.push(data.experience)
+          } else {
+            const index = this.profile.experiences.findIndex(el => el._id === data.experience._id)
+            this.profile.experiences[index] = data.experience
+          }
+          return this.save()
+        }
 
         if(field) {
           this.set(field, doc, options)

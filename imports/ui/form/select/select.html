@@ -1,5 +1,5 @@
 <template name="select">
-	<select name={{name}} class={{class}}>
+	<select name={{name}} class={{class}} multiple={{multiple}}>
 		{{#each option in options}}
 			<option class={{option.class}} value={{option.value}} selected={{option.selected}} label={{option.label}}>
 				{{option.textValue}}

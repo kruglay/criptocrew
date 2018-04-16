@@ -1,4 +1,4 @@
-import './specialization.html'
+import './specialization_test.html'
 import './divisions/divisions'
 import './additionals/additionals'
 import './skills/skills'
@@ -9,8 +9,12 @@ import {Specialization} from '/imports/api/classes/specialization'
 import {Handlers} from '/imports/ui/utils/handlers'
 
 
-Template.specialization.onCreated(function () {
-  // this.profileSkills = new ReactiveVar([])
+Template.specialization_test.onCreated(function () {
+  // console.log('specialization_test')
+  this.profileSkills = new ReactiveVar([])
+  this.autorun(() => {
+
+  })
   // this.profileDivisions = new ReactiveVar([])
   // this.profileAdditionals = new ReactiveVar([])
   //
@@ -40,10 +44,10 @@ Template.specialization.onCreated(function () {
   // })
 })
 
-Template.specialization.onRendered(function () {
+Template.specialization_test.onRendered(function () {
 })
 
-Template.specialization.helpers({
+Template.specialization_test.helpers({
   getStatusOptions(value) {
     return getOptionsFromEnums(searchStatus, value)
   },
@@ -61,22 +65,20 @@ Template.specialization.helpers({
   },
 
   profileSkills() {
-    return Template.instance().profileSkills
+    return Template.instance().profileSkills.get()[0]
   },
+
 
 
 })
 
-Template.specialization.events({
+Template.specialization_test.events({
   'click .js-submit'(e, t) {
     e.preventDefault()
     const formData = t.$('.js-form-specialization').serializeObject()
     // formData.additionals = t.profileAdditionals.get()
     // formData.divisions = t.profileDivisions.get()
-    // formData.skills = t.profileSkills.get()
-    // formData.additionals = Array.isArray(formData.additionals) ? formData.additionals : [formData.additionals]
-    // formData.divisions = Array.isArray(formData.divisions) ? formData.divisions : [formData.divisions]
-    formData.skills = Array.isArray(formData.skills) ? formData.skills : [formData.skills]
+    formData.skills = [formData.skills]
 
     const specialization = new Specialization()
     specialization.set(formData, {cast: true})

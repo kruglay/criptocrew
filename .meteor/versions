@@ -68,6 +68,7 @@ momentjs:moment@2.22.0
 mongo@1.4.4
 mongo-dev-server@1.1.0
 mongo-id@1.0.6
+natestrauser:select2@4.0.3
 npm-bcrypt@0.9.3
 npm-mongo@2.2.34
 oauth@1.2.1
@@ -83,6 +84,7 @@ reload@1.2.0
 retry@1.1.0
 routepolicy@1.0.12
 rzymek:moment-locale-ru@2.14.1
+select2-bootstrap-css@0.0.1
 server-render@0.3.0
 service-configuration@1.0.11
 session@1.1.7

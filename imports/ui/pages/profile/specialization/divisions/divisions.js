@@ -9,7 +9,7 @@ Template.divisions.onRendered(function () {
 
 Template.divisions.helpers({
   getDivisionValue(division) {
-    const profileDivisions = Template.currentData().profileDivisions.get()
+    const profileDivisions = Template.currentData().profileDivisions
     return getValue(profileDivisions, division)
   },
 

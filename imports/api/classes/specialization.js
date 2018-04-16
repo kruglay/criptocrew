@@ -6,7 +6,7 @@ const Specialization = Class.create({
   fields: {
     searchStatus: {
       type: searchStatus,
-      default: searchStatus.getIdentifier(2),
+      default: 1,
       cast(value) {
         return Number(value)
       }
@@ -20,23 +20,21 @@ const Specialization = Class.create({
       type:[Object],
       name: {
         type: String,
-        immutable: true
       },
       title: {
         type: String,
-        immutable: true
       },
+      optional: true,
     },
     divisions: {
       type:[Object],
       name: {
         type: String,
-        immutable: true
       },
       title: {
         type: String,
-        immutable: true
       },
+      optional: true,
     },
     salary: {
       type: Number,
@@ -51,9 +49,21 @@ const Specialization = Class.create({
     },
     skills: {
       type: [String],
-      default: []
+      optional: true,
+      default: () => []
     }
   }
 })
+
+// const Specialization = Class.create({
+//   name: 'Specialization',
+//   fields: {
+//     skills: {
+//       type: [String],
+//       optional: true,
+//       // default: () => []
+//     }
+//   }
+// })
 
 export {Specialization}

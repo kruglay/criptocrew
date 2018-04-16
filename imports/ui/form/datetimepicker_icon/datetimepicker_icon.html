@@ -1,0 +1,13 @@
+<template name="datetimepicker_icon">
+	<div class="form-group {{class}}">
+		{{#if label}}
+			<label for={{name}}>{{label}}</label>
+		{{/if}}
+		<div class='input-group date js-datetimepicker'>
+			<input type='text' class="form-control" value={{getDate date dateFormat}} name={{name}} placeholder={{placeholder}}/>
+			<span class="input-group-addon">
+        	<span class="glyphicon {{icon}}"></span>
+        </span>
+		</div>
+	</div>
+</template>

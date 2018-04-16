@@ -21,17 +21,16 @@
 				value=1
 			}}
 		{{/radio_group}}
-		<div class="form-group">
-			<div class='input-group date datetimepicker'>
-				<input type='text' class="form-control" value={{getDate currentUser.profile.personal.dateOfBirth 'L'}} name="dateOfBirth"/>
-				<span class="input-group-addon">
-        	<span class="glyphicon glyphicon-calendar"></span>
-        </span>
-			</div>
-		</div>
+
+		{{> datetimepicker_icon
+			date=currentUser.profile.personal.dateOfBirth
+			dateFormat='L'
+			name='dateOfBirth'
+		}}
+
 		{{> select
 			name='city'
-			options=cityOptions
+			options=(getCityOptions currentUser.profile.personal.city)
 			class='form-control'
 		}}
 

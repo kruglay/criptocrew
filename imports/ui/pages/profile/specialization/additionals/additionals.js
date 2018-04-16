@@ -12,7 +12,7 @@ Template.additionals.helpers({
     return additionals()
   },
   getAdditionalValue(additional) {
-    const profileAdditionals = Template.currentData().profileAdditionals.get()
+    const profileAdditionals = Template.currentData().profileAdditionals
     return getValue(profileAdditionals, additional)
   },
 

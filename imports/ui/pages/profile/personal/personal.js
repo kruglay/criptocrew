@@ -3,33 +3,18 @@ import {cities} from '/imports/api/enums/enums'
 import {User} from '/imports/api/users/index'
 import {Handlers} from '/imports/ui/utils/handlers'
 import {Personal} from '/imports/api/classes/personal'
+import {getCityOptions} from '/imports/ui/utils/utils'
 
 Template.personal.onCreated(function () {
 })
 
 Template.personal.onRendered(function () {
-  const template = Template.instance()
-  template.$('.datetimepicker').datetimepicker({
-    locale: 'ru',
-    format: 'L'
-  })
+
 })
 
 Template.personal.helpers({
-  cityOptions() {
-    const identifiers = cities.getIdentifiers(),
-      options = []
-    identifiers.forEach((el, i) => {
-      const option = {
-        textValue: el,
-        value: i,
-      }
-      if(i === 0) {
-        option.selected = '1'
-      }
-      options.push(option)
-    })
-    return options
+  getCityOptions(city) {
+    return getCityOptions(city)
   }
 })
 
