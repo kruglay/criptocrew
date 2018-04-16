@@ -10,34 +10,27 @@ import {Handlers} from '/imports/ui/utils/handlers'
 
 
 Template.specialization.onCreated(function () {
-  // this.profileSkills = new ReactiveVar([])
-  // this.profileDivisions = new ReactiveVar([])
-  // this.profileAdditionals = new ReactiveVar([])
-  //
-  // this.autorun(() => {
-  //   const user = User.findOne(Meteor.userId())
-  //   this.specialization = user ? user.profile.specialization || {} : {}
-  //
-  //   const specializationSkills = this.specialization.skills,
-  //     specializationDivisions = this.specialization.divisions,
-  //     specializationAdditionals = this.specialization.additionals
-  //
-  //   const profileSkills = this.profileSkills.get(),
-  //     profileDivisions = this.profileDivisions.get(),
-  //     profileAdditionals = this.profileAdditionals.get()
-  //
-  //   if(profileSkills.length === 0 && specializationSkills) {
-  //     this.profileSkills.set(specializationSkills)
-  //   }
-  //
-  //   if(profileAdditionals.length === 0 && specializationAdditionals) {
-  //     this.profileAdditionals.set(specializationAdditionals)
-  //   }
-  //
-  //   if(profileDivisions.length === 0 && specializationDivisions) {
-  //     this.profileDivisions.set(specializationDivisions)
-  //   }
-  // })
+  this.profileDivisions = new ReactiveVar([])
+  this.profileAdditionals = new ReactiveVar([])
+
+  this.autorun(() => {
+    const user = User.findOne(Meteor.userId())
+    this.specialization = user ? user.profile.specialization || {} : {}
+
+    const specializationDivisions = this.specialization.divisions,
+      specializationAdditionals = this.specialization.additionals
+
+    const profileDivisions = this.profileDivisions.get(),
+      profileAdditionals = this.profileAdditionals.get()
+
+    if(profileAdditionals.length === 0 && specializationAdditionals) {
+      this.profileAdditionals.set(specializationAdditionals)
+    }
+
+    if(profileDivisions.length === 0 && specializationDivisions) {
+      this.profileDivisions.set(specializationDivisions)
+    }
+  })
 })
 
 Template.specialization.onRendered(function () {
@@ -71,8 +64,8 @@ Template.specialization.events({
   'click .js-submit'(e, t) {
     e.preventDefault()
     const formData = t.$('.js-form-specialization').serializeObject()
-    // formData.additionals = t.profileAdditionals.get()
-    // formData.divisions = t.profileDivisions.get()
+    formData.additionals = t.profileAdditionals.get()
+    formData.divisions = t.profileDivisions.get()
     // formData.skills = t.profileSkills.get()
     // formData.additionals = Array.isArray(formData.additionals) ? formData.additionals : [formData.additionals]
     // formData.divisions = Array.isArray(formData.divisions) ? formData.divisions : [formData.divisions]

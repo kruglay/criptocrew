@@ -4,9 +4,12 @@ Template.select.onCreated(function () {
 })
 
 Template.select.onRendered(function () {
-  if(this.data.turnOnSelect2) {
-    this.$(`.${this.data.class}`).select2(this.data.params || {})
-  }
+  this.autorun(() => {
+    const params = Template.currentData().params
+    if(this.data.turnOnSelect2) {
+      this.$(`.${this.data.class}`).select2(params || {})
+    }
+  })
 })
 
 Template.select.helpers({})

@@ -16,9 +16,9 @@
 			</div>
 		</div>
 		<input type="text" class="form-control" name="personalSpecialization" placeholder="Ваша специализация" value={{currentUser.profile.specialization.personalSpecialization}}>
-		{{!--> additionals profileAdditionals=currentUser.profile.specialization.additionals--}}
+		{{> additionals profileAdditionals=profileAdditionals}}
 
-		{{!--> divisions profileDivisions=currentUser.profile.specialization.divisions--}}
+		{{> divisions profileDivisions=profileDivisions}}
 
 		{{> skills profileSkills=currentUser.profile.specialization.skills}}
 
