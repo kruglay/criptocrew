@@ -36,7 +36,7 @@ Template.skills.helpers({
      options = []
     skills.forEach((skill, i) => {
       let option = {}
-      option.id = i
+      option.id = skill
       option.text = skill
       if(Template.currentData().profileSkills && Template.currentData().profileSkills.includes(skill)) {
         option.selected = true

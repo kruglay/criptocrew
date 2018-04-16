@@ -13,27 +13,43 @@ Template.specialization.onCreated(function () {
   this.profileDivisions = new ReactiveVar([])
   this.profileAdditionals = new ReactiveVar([])
 
-  this.autorun(() => {
+  // this.autorun(() => {
+  //   const user = User.findOne(Meteor.userId())
+  //   this.specialization = user ? user.profile.specialization || {} : {}
+  //
+  //   const specializationDivisions = this.specialization.divisions,
+  //     specializationAdditionals = this.specialization.additionals
+  //
+  //   const profileDivisions = this.profileDivisions.get(),
+  //     profileAdditionals = this.profileAdditionals.get()
+  //
+  //   if(profileAdditionals.length === 0 && specializationAdditionals) {
+  //     this.profileAdditionals.set(specializationAdditionals)
+  //   }
+  //
+  //   if(profileDivisions.length === 0 && specializationDivisions) {
+  //     this.profileDivisions.set(specializationDivisions)
+  //   }
+  // })
+})
+
+Template.specialization.onRendered(function () {
+  if(this.subscriptionsReady()) {
     const user = User.findOne(Meteor.userId())
     this.specialization = user ? user.profile.specialization || {} : {}
 
     const specializationDivisions = this.specialization.divisions,
       specializationAdditionals = this.specialization.additionals
 
-    const profileDivisions = this.profileDivisions.get(),
-      profileAdditionals = this.profileAdditionals.get()
-
-    if(profileAdditionals.length === 0 && specializationAdditionals) {
+    if(specializationAdditionals) {
       this.profileAdditionals.set(specializationAdditionals)
     }
 
-    if(profileDivisions.length === 0 && specializationDivisions) {
+    if(specializationDivisions) {
       this.profileDivisions.set(specializationDivisions)
     }
-  })
-})
 
-Template.specialization.onRendered(function () {
+  }
 })
 
 Template.specialization.helpers({
