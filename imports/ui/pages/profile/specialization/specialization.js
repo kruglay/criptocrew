@@ -12,25 +12,6 @@ import {Handlers} from '/imports/ui/utils/handlers'
 Template.specialization.onCreated(function () {
   this.profileDivisions = new ReactiveVar([])
   this.profileAdditionals = new ReactiveVar([])
-
-  // this.autorun(() => {
-  //   const user = User.findOne(Meteor.userId())
-  //   this.specialization = user ? user.profile.specialization || {} : {}
-  //
-  //   const specializationDivisions = this.specialization.divisions,
-  //     specializationAdditionals = this.specialization.additionals
-  //
-  //   const profileDivisions = this.profileDivisions.get(),
-  //     profileAdditionals = this.profileAdditionals.get()
-  //
-  //   if(profileAdditionals.length === 0 && specializationAdditionals) {
-  //     this.profileAdditionals.set(specializationAdditionals)
-  //   }
-  //
-  //   if(profileDivisions.length === 0 && specializationDivisions) {
-  //     this.profileDivisions.set(specializationDivisions)
-  //   }
-  // })
 })
 
 Template.specialization.onRendered(function () {

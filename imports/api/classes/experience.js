@@ -23,6 +23,7 @@ export const Experience = Class.create({
     },
     endDate: {
       type: Date,
+      optional: true,
       cast(value) {
         return moment(value, EXPERIENCE_DATE_FORMAT).toDate()
       }
@@ -40,7 +41,7 @@ export const Experience = Class.create({
   events: {
     beforeSave(e) {
       const doc = e.currentTarget
-      console.log('beforeSave(e)', doc, user)
+      console.log('beforeSave(e)', doc)
       if(!doc._id){
         doc._id = new Meteor.Collection.ObjectID()
       }

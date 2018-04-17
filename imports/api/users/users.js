@@ -83,6 +83,8 @@ const User = Class.create({
       const userId = Accounts.createUser({email: data.email, password: data.password, profile: {}})
       return userId
     },
+
+
   },
 
   helpers: {
@@ -115,6 +117,12 @@ if(Meteor.isServer) {
         } else {
           this.set(doc, options)
         }
+        return this.save()
+      },
+
+      deleteExperience(_id) {
+        const index = this.profile.experiences.findIndex(el => el._id === _id)
+        this.profile.experiences.splice(index, 1)
         return this.save()
       }
     }
