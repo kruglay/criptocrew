@@ -91,7 +91,6 @@ Template.specialization_test.events({
         data: {specialization},
         field: 'profile'
       },
-      {merge: true},
       Handlers.default((err, res) => {
         if (!err) FlowRouter.go(`/users/${Meteor.userId()}`)
       })

@@ -28,7 +28,6 @@ Template.personal.events({
     user.callMethod(
       'patch',
       {field: 'profile', data: {personal}},
-      {merge: true},
       Handlers.default((err, res) => {
         if (!err) FlowRouter.go(`/users/${Meteor.userId()}`)
       })

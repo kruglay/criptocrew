@@ -164,6 +164,22 @@ export function getCityOptions(value) {
   return options
 }
 
+export function getPeriod(instance, formatDate) {
+  const begin = moment(instance.startDate).format(formatDate),
+    end = instance.stillWorking ? 'по настоящее время' : moment(instance.endDate).format(formatDate)
+  return `${begin} - ${end}`
+}
+
+export function saveCollectionArray(field, instance, options) {
+  if(options.newInstance) {
+    this.profile[field].push(instance)
+  } else {
+    const index = this.profile[field].findIndex(el => el._id === instance._id)
+    this.profile[field][index] = instance
+  }
+  return this.save()
+}
+
 export const skills = [
   'React.js', 'Node.js', 'Git', 'Redux', 'Meteor.js',
   'Ruby on Rails', 'SQL', 'CSS', 'HTML', 'JavaScript'

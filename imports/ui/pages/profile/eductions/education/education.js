@@ -1,30 +1,30 @@
-import './experience.html'
+import './education.html'
 import {EXPERIENCE_DATE_FORMAT} from '/imports/ui/utils/consts'
 import {getCityOptions} from '/imports/ui/utils/utils'
-import {Experience} from '/imports/api/classes/experience'
 import {Handlers} from '/imports/ui/utils/handlers'
+import {Education} from '/imports/api/classes/education'
 
-Template.experience.onCreated(function () {
-  this.experience = new ReactiveVar()
+Template.education.onCreated(function () {
+  this.education = new ReactiveVar()
   this.autorun(() => {
-    const experienceId = FlowRouter.getParam('experienceId')
+    const educationId = FlowRouter.getParam('educationId')
     this.user = User.findOne(Meteor.userId())
-    this.experience.set(
-      this.user && experienceId && this.user.profile.experiences.find(el => el._id === experienceId)
+    this.education.set(
+      this.user && educationId && this.user.profile.educations.find(el => el._id === educationId)
     )
   })
 })
 
-Template.experience.onRendered(function () {
+Template.education.onRendered(function () {
   this.$('.datetimepicker').datetimepicker({
     locale: 'ru',
     format: EXPERIENCE_DATE_FORMAT
   })
 })
 
-Template.experience.helpers({
-  experience() {
-    return Template.instance().experience.get()
+Template.education.helpers({
+  education() {
+    return Template.instance().education.get()
   },
 
   getCityOptions(city) {
@@ -32,18 +32,18 @@ Template.experience.helpers({
   }
 })
 
-Template.experience.events({
-  'change .js-still-working'(e, t){
+Template.education.events({
+  'change .js-still-studying'(e, t){
     t.$('.js-end-date input').prop('disabled', e.target.checked)
     t.$('.js-end-date input').val('')
   },
 
-  'submit .js-form-experience'(e, t) {
+  'submit .js-form-education'(e, t) {
     e.preventDefault()
     const data = $(e.target).serializeObject(),
       user = User.findOne(Meteor.userId())
 
-    let _id = FlowRouter.getParam('experienceId'),
+    let _id = FlowRouter.getParam('educationId'),
       newInstance = false
 
     if(!_id) {
@@ -52,17 +52,17 @@ Template.experience.events({
     }
     data._id = _id
 
-    const experience = new Experience(data, {cast: true})
+    const education = new Education(data, {cast: true})
     if(user) {
       user.callMethod(
         'patch',
         {
           field: 'profile',
-          experience
+          education
         },
         {newInstance},
         Handlers.default(err => {
-          if(!err) FlowRouter.go('profile.experiences')
+          if(!err) FlowRouter.go('profile.educations')
         })
       )
     }

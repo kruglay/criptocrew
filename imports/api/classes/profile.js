@@ -3,7 +3,8 @@ import {Class} from 'meteor/jagi:astronomy'
 import {Personal} from '/imports/api/classes/personal'
 import {Experience} from '/imports/api/classes/experience'
 import {Specialization} from '/imports/api/classes/specialization'
-
+import {Contacts} from '/imports/api/classes/contacts'
+import {Education} from '/imports/api/classes/education'
 
 export const Profile = Class.create({
   name: 'Profile',
@@ -27,16 +28,15 @@ export const Profile = Class.create({
     },
 
     educations: {
-      type: [String],
+      type: [Education],
       optional: true,
       default: () => []
     },
 
     contacts: {
-      // type: Contacts,
-      type: String,
+      type: Contacts,
       optional: true,
-      default: ''
+      default: new Contacts()
     },
   }
 })

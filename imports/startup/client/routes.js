@@ -129,6 +129,34 @@ profileRoutes.route('/experiences/:experienceId', {
   }
 })
 
+profileRoutes.route('/contacts', {
+  name: 'profile.contacts',
+  action() {
+    BlazeLayout.render('default_layout', {page: 'contacts'})
+  }
+})
+
+profileRoutes.route('/educations', {
+  name: 'profile.educations',
+  action() {
+    BlazeLayout.render('default_layout', {page: 'educations'})
+  }
+})
+
+profileRoutes.route('/educations/new', {
+  name: 'profile.educations.new',
+  action() {
+    BlazeLayout.render('default_layout', {page: 'education'})
+  }
+})
+
+profileRoutes.route('/educations/:educationId', {
+  name: 'profile.educations.id',
+  action() {
+    BlazeLayout.render('default_layout', {page: 'education'})
+  }
+})
+
 
 // AccountsTemplates.configureRoute('signIn')
 AccountsTemplates.configureRoute('changePwd')

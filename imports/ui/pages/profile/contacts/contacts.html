@@ -1,0 +1,86 @@
+<template name="contacts">
+	<form class="js-form-contacts">
+		<div class="contacts">
+			<div class="js-phones">
+				{{#if currentUser.profile.contacts.phones.length}}
+					{{#each phone in currentUser.profile.contacts.phones}}
+						{{> contact_item
+							class='phone-item'
+							label='Телефон:'
+							name='phones'
+							type='text'
+							value=phone
+							onClick=(handleClick 'phone-item')
+						}}
+					{{/each}}
+				{{else}}
+					{{> contact_item
+						class='phone-item'
+						label='Телефон:'
+						name='phones'
+						type='text'
+						onClick=(handleClick 'phone-item')
+					}}
+				{{/if}}
+				<button class="btn btn-default js-add-phone">
+					Добавить номер телефона
+				</button>
+			</div>
+
+			<div class="js-emails">
+				{{#if currentUser.profile.contacts.emails.length}}
+					{{#each email in currentUser.profile.contacts.emails}}
+						{{> contact_item
+							class='email-item'
+							label='email:'
+							name='emails'
+							type='text'
+							value=email
+							onClick=(handleClick 'email-item')
+						}}
+					{{/each}}
+				{{else}}
+					{{> contact_item
+						class='email-item'
+						label='email:'
+						name='emails'
+						type='text'
+						onClick=(handleClick 'email-item')
+					}}
+				{{/if}}
+				<button class="btn btn-default js-add-email">
+					Добавить email
+				</button>
+			</div>
+
+			<div class="js-webUrls">
+				{{#if currentUser.profile.contacts.webUrls.length}}
+					{{#each webUrl in currentUser.profile.contacts.webUrls}}
+						{{> contact_item
+							class='web-url-item'
+							label= 'Страница в интернете:'
+							name='webUrls'
+							type='text'
+							value=webUrl
+							onClick=(handleClick 'web-url-item')
+						}}
+					{{/each}}
+				{{else}}
+					{{> contact_item
+						class='web-url-item'
+						label= 'Страница в интернете:'
+						name='webUrls'
+						type='text'
+						onClick=(handleClick 'web-url-item')
+					}}
+				{{/if}}
+				<button class="btn btn-default js-add-webUrl">
+					Добавить адрес страницы
+				</button>
+
+			</div>
+		</div>
+
+		<input type="submit" class="btn btn-default js-submit" value="Сохранить">
+	</form>
+</template>

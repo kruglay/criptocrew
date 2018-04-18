@@ -1,0 +1,13 @@
+<template name="educations">
+	<div class="list-group js-educations">
+		<div class="form-inline">
+			<div class="form-group">
+				<span>Образование</span>
+				<a href={{pathFor 'profile.educations.new'}}>Добавить образование</a>
+			</div>
+		</div>
+		{{#each education in educations}}
+			{{> education_item education=education}}
+		{{/each}}
+	</div>
+</template>

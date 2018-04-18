@@ -1,33 +1,33 @@
-<template name="experience_item">
+<template name="education_item">
 	<div class="panel">
 		<div class="form-group-lg">
-			<label>{{getWorkPeriod}}</label>
+			<label>{{getEducationPeriod}}</label>
 		</div>
 
 		<div class="form-group">
-			<label>Компания:</label>
-			<span>{{experience.companyName}}</span>
+			<label>Место учебы:</label>
+			<span>{{education.name}}</span>
 		</div>
 
 		<div class="form-group">
-			<label>Должность:</label>
-			<span>{{experience.position}}</span>
+			<label>Факультет:</label>
+			<span>{{education.faculty}}</span>
 		</div>
 
 		<div class="form-group">
 			<label for="location">Город:</label>
-			<span>{{location experience.location}}</span>
+			<span>{{location education.location}}</span>
 		</div>
 
 		<div class="form-group responsibilities">
-			<label>Должностные обязанности</label>
+			<label>Дополнительно</label>
 			<p class="form-control-static">
-				{{experience.responsibilities}}
+				{{education.additional}}
 			</p>
 		</div>
 
 		<div class="form-group">
-			<a href="{{pathFor 'profile.experiences.id' experienceId=experience._id}}" class="btn btn-default">
+			<a href="{{pathFor 'profile.educations.id' educationId=education._id}}" class="btn btn-default">
 				Редактировать
 			</a>
 			<a href="#" class="btn btn-default js-remove">

@@ -1,0 +1,58 @@
+<template name="education">
+	<form class="js-form-education">
+		<div class="form-group">
+			<label for="name">Место учебы</label>
+			<input type="text" class="form-control" name="name" value={{education.name}}>
+		</div>
+
+		<div class="form-group">
+			<label for="faculty">Факультет</label>
+			<input type="text" class="form-control" name="faculty" value={{education.faculty}}>
+		</div>
+
+		<div class="form-group">
+			<label for="location">Город</label>
+
+			{{> select
+				name='location'
+				class='js-select-city'
+				options=(getCityOptions education.location)
+				turnOnSelect2=true
+			}}
+		</div>
+
+		<div class="form-inline">
+			{{> datetimepicker_icon
+				name='startDate'
+				value=education.startDate
+				label='Дата начала'
+				formatDate='MMMM YYYY'
+			}}
+		</div>
+
+		<div class="form-inline">
+			{{> datetimepicker_icon
+				name='endDate'
+				value=education.endDate
+				label='Дата окончания'
+				formatDate='MMMM YYYY'
+				class='js-end-date'
+			}}
+			{{> checkbox
+				name='stillStudying'
+				label='По текущее время'
+				value=education.stillStudying
+				class='form-group js-still-studying'
+			}}
+		</div>
+
+		<div class="form-group">
+			<label for="additional">Допольнительно</label>
+			<textarea name="additional" rows="10" class="form-control">
+				{{education.additional}}
+			</textarea>
+		</div>
+
+		<input type="submit" class="btn btn-default js-submit-education" value="Сохранить">
+	</form>
+</template>

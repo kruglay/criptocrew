@@ -1,19 +1,22 @@
 import {Class} from 'meteor/jagi:astronomy'
-import {EXPERIENCE_DATE_FORMAT} from '/imports/ui/utils/consts'
 import {cities} from '/imports/api/enums/enums'
+import {EXPERIENCE_DATE_FORMAT} from '/imports/ui/utils/consts'
 
-export const Experience = Class.create({
-  name: 'Experience',
+export const Education = Class.create({
+  name: 'Education',
   fields: {
     _id: String,
-    companyName: String,
-    position: String,
     location: {
       type: cities,
       optional: true,
       cast(value) {
         return Number(value)
       }
+    },
+    name: String,
+    faculty: {
+      type: String,
+      optional: true
     },
     startDate: {
       type: Date,
@@ -34,23 +37,13 @@ export const Experience = Class.create({
         return value
       }
     },
-    responsibilities: {
+    stillStudying: {
+      type: Boolean,
+      default: false
+    },
+    additional: {
       type: String,
       optional: true,
-    },
-    stillWorking: {
-      type: Boolean,
-      optional: true
     }
-  },
-
-  events: {
-    beforeSave(e) {
-      const doc = e.currentTarget
-      console.log('beforeSave(e)', doc)
-      if(!doc._id){
-        doc._id = new Meteor.Collection.ObjectID()
-      }
-    },
   }
 })

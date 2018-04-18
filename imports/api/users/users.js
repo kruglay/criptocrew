@@ -1,56 +1,11 @@
 import {Class, Enum} from 'meteor/jagi:astronomy'
-import {searchStatus} from '/imports/api/enums/enums'
-import {Personal} from '/imports/api/classes/personal'
-import {Specialization} from '/imports/api/classes/specialization'
-import {Experience} from '/imports/api/classes/experience'
+
 import {Profile} from '/imports/api/classes/profile'
+import {saveCollectionArray} from '/imports/ui/utils/utils'
 
 
 //todo add validations
 const collection = Meteor.users
-
-const Education = Class.create({
-  name: 'Education',
-  fields: {
-    location: {
-      type: String,
-      optional: true
-    },
-    name: String,
-    faculty: {
-      type: String,
-      optional: true
-    },
-    startDate: Date,
-    endDate: {
-      type: Date,
-    },
-    additional: {
-      type: String,
-      optional: true,
-    }
-  }
-})
-
-const Contacts = Class.create({
-  name: 'Contacts',
-  fields: {
-    telephone: {
-      type: [String],
-      optional: true,
-    },
-    emails: {
-      type: [String],
-      optional: true,
-    },
-    webUrls: {
-      type: [String],
-      optional: true,
-    },
-  }
-})
-
-
 
 const User = Class.create({
   name: "User",
@@ -103,33 +58,27 @@ if(Meteor.isServer) {
           field = data.field
         //save experiences
         if(data.experience) {
-          if(options.newInstance) {
-            this.profile.experiences.push(data.experience)
-          } else {
-            const index = this.profile.experiences.findIndex(el => el._id === data.experience._id)
-            this.profile.experiences[index] = data.experience
-          }
-          return this.save()
+          return saveCollectionArray.call(this, 'experiences', data.experience, options)
+        }
+        if(data.education) {
+          return saveCollectionArray.call(this, 'educations', data.education, options)
         }
 
         if(field) {
-          this.set(field, doc, options)
+          this.set(field, doc, {...options, merge: true})
         } else {
-          this.set(doc, options)
+          this.set(doc, {...options, merge: true})
         }
         return this.save()
       },
 
-      deleteExperience(_id) {
-        const index = this.profile.experiences.findIndex(el => el._id === _id)
-        this.profile.experiences.splice(index, 1)
+      deleteElementOfArray(_id, field) {
+        const index = this.profile[field].findIndex(el => el._id === _id)
+        this.profile[field].splice(index, 1)
         return this.save()
       }
     }
   })
 }
-
-
-
 
 export {User}
