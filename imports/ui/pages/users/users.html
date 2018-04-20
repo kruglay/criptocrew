@@ -1,0 +1,7 @@
+<template name="users">
+	<fieldset class="users">
+		{{#each user in users}}
+			{{> user_badge user=user}}
+		{{/each}}
+	</fieldset>
+</template>

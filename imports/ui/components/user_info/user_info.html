@@ -1,0 +1,13 @@
+<template name="user_info">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<label>{{title}}</label>
+			{{#if edit}}
+				<a class="float-right" href={{pathFor path}}>Редактировать</a>
+			{{/if}}
+		</div>
+		<div class="panel-body">
+			{{>Template.contentBlock}}
+		</div>
+	</div>
+</template>

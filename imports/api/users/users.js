@@ -26,6 +26,23 @@ const User = Class.create({
       default: 'user',
     },
 
+    agent: {
+      type: Boolean,
+      default: false
+    },
+
+    emails: {
+      type: [Object],
+      default() {
+        return []
+      }
+    },
+
+    username: {
+      type: String,
+      optional: true
+    },
+
     profile: {
       type: Profile,
       default: () => new Profile()
@@ -44,7 +61,7 @@ const User = Class.create({
 
   helpers: {
     getName() {
-      return this.profile.name ? this.profile.name
+      return this.profile.personal && this.profile.personal.firstName ? `${this.profile.personal.firstName} ${this.profile.personal.lastName}`
         : this.username ? this.username : this.emails[0].address
     }
   }

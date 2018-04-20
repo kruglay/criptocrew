@@ -1,40 +1,61 @@
 <template name="personal">
 	<form class="js-form-personal">
+
 		{{>uploader
 			name = 'avatar'
 			value=currentUser.profile.personal.avatar
+			thumbnailClass='thumbnail--monster thumbnail--rounded'
 		}}
-		<input type="text" placeholder="Ваше имя" name="firstName" class="form-control" value={{currentUser.profile.personal.firstName}}>
+		<input type="text " placeholder="Ваше имя" name="firstName" class="form-control" value={{currentUser.profile.personal.firstName}}>
 		<input type="text" placeholder="Ваша фамилия" name="lastName" class="form-control" value={{currentUser.profile.personal.lastName}}>
 		<input type="text" placeholder="Ваше отчество" name="middleName" class="form-control" value={{currentUser.profile.personal.middleName}}>
-		{{#radio_group defaultValue=0 value=currentUser.profile.personal.sex}}
-			{{> radio_button
-				name='sex'
-				key='male'
-				label='Male'
-				value=0
+
+		<div class="form-group">
+			{{#radio_group defaultValue=0 value=currentUser.profile.personal.sex}}
+				{{> radio_button
+					name='sex'
+					key='male'
+					label='Male'
+					value=0
+				}}
+
+				{{> radio_button
+					name='sex'
+					key='female'
+					label='Female'
+					value=1
+				}}
+			{{/radio_group}}
+		</div>
+
+		<div class="form-group">
+			<label>Дата рождения</label>
+			{{> datetimepicker_icon
+				date=currentUser.profile.personal.dateOfBirth
+				dateFormat='L'
+				name='dateOfBirth'
 			}}
-			{{> radio_button
-				name='sex'
-				key='female'
-				label='Female'
-				value=1
+		</div>
+
+
+		<div class="form-group">
+			<label>Местоположение</label>
+			{{> select
+				name='city'
+				options=(getCityOptions currentUser.profile.personal.city)
+				class='form-control'
 			}}
-		{{/radio_group}}
+		</div>
 
-		{{> datetimepicker_icon
-			date=currentUser.profile.personal.dateOfBirth
-			dateFormat='L'
-			name='dateOfBirth'
-		}}
 
-		{{> select
-			name='city'
-			options=(getCityOptions currentUser.profile.personal.city)
-			class='form-control'
-		}}
-
-		<input type="text" class="form-control" placeholder="Адрес вашего сайта" name="webUrl" value={{currentUser.profile.personal.webUrl}}>
+		<div class="form-group">
+			<label>О себе</label>
+			<textarea name="about" class="form-control" rows="10">{{currentUser.profile.personal.about}}</textarea>
+		</div>
+		<div class="form-group">
+			<label>Ваш сайт</label>
+			<input type="text" class="form-control" placeholder="Адрес вашего сайта" name="webUrl" value={{currentUser.profile.personal.webUrl}}>
+		</div>
 		<input type="submit" class="btn btn-default js-submit" value="Сохранить">
 	</form>
 </template>

@@ -1,0 +1,38 @@
+<template name="user_badge">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<label>{{user.getName}}</label>
+		</div>
+		<div class="panel-body">
+			<div class="col-md-2">
+				{{> thumbnail
+					class='thumbnail--larger'
+					previewUrl=user.profile.personal.avatar
+				}}
+			</div>
+			<div class="col-md-10 main border-left">
+				<div class="form-group">
+					<label>{{user.profile.specialization.personalSpecialization}}</label>
+					<p>
+						{{user.profile.specialization.skillsToString}}
+					</p>
+
+					<p>
+						<label>Стаж:</label>
+					</p>
+
+					<p>
+						<label>Последнее место работы:</label>
+						{{user.profile.lastJob.companyName}}
+					</p>
+
+					<p>
+						<label>Образование:</label>
+						{{user.profile.mainEducation.name}}
+					</p>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

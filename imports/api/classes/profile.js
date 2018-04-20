@@ -38,5 +38,15 @@ export const Profile = Class.create({
       optional: true,
       default: new Contacts()
     },
+  },
+
+  helpers: {
+    lastJob() {
+      return this.experiences.sort((a, b) => b.startDate - a.startDate)[0]
+    },
+
+    mainEducation() {
+      return this.educations.sort((a, b) => b.startDate - a.startDate)[0]
+    }
   }
 })

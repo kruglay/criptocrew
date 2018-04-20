@@ -94,7 +94,7 @@ Template.contacts.events({
           data: {contacts}
         },
         Handlers.default(err => {
-          if(!err) FlowRouter.go(`user`, {_userId: Meteor.userId()})
+          if(!err) FlowRouter.go(`user`, {userId: Meteor.userId()})
         })
       )
     }

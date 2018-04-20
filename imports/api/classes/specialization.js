@@ -52,6 +52,12 @@ const Specialization = Class.create({
       optional: true,
       default: () => []
     }
+  },
+
+  helpers: {
+    skillsToString() {
+      return this.skills.join(', ')
+    }
   }
 })
 

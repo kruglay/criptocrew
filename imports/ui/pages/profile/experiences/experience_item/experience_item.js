@@ -15,6 +15,14 @@ Template.experience_item.helpers({
     const experience = Template.currentData().experience
     return getPeriod(experience, EXPERIENCE_DATE_FORMAT)
   },
+
+  isEdit() {
+    const _owner = Template.currentData()._owner
+    if(_owner === Meteor.userId() && Template.currentData().edit) {
+      return true
+    }
+    return false
+  }
 })
 
 Template.experience_item.events({

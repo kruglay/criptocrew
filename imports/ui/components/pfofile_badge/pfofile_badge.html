@@ -1,13 +1,23 @@
 <template name="pfofile_badge">
 	{{#if currentUser}}
 	<fieldset>
-		{{>thumbnail
-			url=currentUser.profile.personal.avatar
-		}}
+		{{#if currentUser}}
+		<div class="form-group">
+			{{>thumbnail
+				url=currentUser.profile.personal.avatar
+				class='thumbnail--bigger'
+			}}
+			<label>{{userName}}</label>
+		</div>
+			<div class="form-group">
+				<a href={{pathFor 'settings'}}>Личные настройки</a>
+			</div>
+		{{/if}}
+
 		<div>
 			{{name}}
 		</div>
-		<a href={{pathFor 'user' _userId=currentUser._id}} class='js-edit'>Настройка профиля</a>
+		<a href={{pathFor 'user' userId=currentUser._id}} class='js-edit'>Настройка профиля</a>
 		<a href={{pathFor 'auth.index'}} class='js-exit'>Выход</a>
 	</fieldset>
 	{{else}}

@@ -5,6 +5,10 @@ import '/imports/ui/layouts/default/default_layout'
 import '/imports/ui/pages/auth'
 import '/imports/ui/pages/profile'
 import '/imports/ui/pages/user/user'
+import '/imports/ui/pages/users/users'
+import '/imports/ui/pages/private_settings/private_settings'
+
+
 
 FlowRouter.notFound = {
   action: function() {
@@ -14,18 +18,25 @@ FlowRouter.notFound = {
   }
 }
 
-// FlowRouter.route('/users', {
-//   name: 'users',
-//   action() {
-//     BlazeLayout.render('default_layout', {page: 'users'})
-//   }
-// })
+FlowRouter.route('/users', {
+  name: 'users',
+  action() {
+    BlazeLayout.render('default_layout', {page: 'users'})
+  }
+})
 
-FlowRouter.route('/users/:_userId', {
+FlowRouter.route('/users/:userId', {
   name: 'user',
   action() {
-    console.log('/users/:_userId')
+    console.log('/users/:userId')
     BlazeLayout.render('default_layout', {page: 'user'})
+  }
+})
+
+FlowRouter.route('/settings', {
+  name: 'settings',
+  action() {
+    BlazeLayout.render('default_layout', {page: 'private_settings'})
   }
 })
 

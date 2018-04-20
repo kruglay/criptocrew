@@ -7,7 +7,11 @@
 			</div>
 		</div>
 		{{#each experience in experiences}}
-				{{> experience_item experience=experience}}
+				{{> experience_item
+					experience=experience
+					_owner=currentUser._id
+					edit=true
+				}}
 		{{/each}}
 	</div>
 </template>

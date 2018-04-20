@@ -7,7 +7,11 @@
 			</div>
 		</div>
 		{{#each education in educations}}
-			{{> education_item education=education}}
+			{{> education_item
+				education=education
+				_owner=currentUser._id
+				edit=true
+			}}
 		{{/each}}
 	</div>
 </template>

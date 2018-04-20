@@ -8,7 +8,12 @@ Template.pfofile_badge.onCreated(function(){
 Template.pfofile_badge.onRendered(function(){
 })
 
-Template.pfofile_badge.helpers({})
+Template.pfofile_badge.helpers({
+  userName() {
+    const user = User.findOne(Meteor.userId())
+    return user && user.getName()
+  }
+})
 
 Template.pfofile_badge.events({
   'click .js-exit'(e, t) {

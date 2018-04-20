@@ -13,7 +13,16 @@ Template.education_item.helpers({
   getEducationPeriod() {
     const education = Template.currentData().education
     return getPeriod(education, EXPERIENCE_DATE_FORMAT)
+  },
+
+  isEdit() {
+    const _owner = Template.currentData()._owner
+    if(_owner === Meteor.userId() && Template.currentData().edit) {
+      return true
+    }
+    return false
   }
+
 })
 
 Template.education_item.events({

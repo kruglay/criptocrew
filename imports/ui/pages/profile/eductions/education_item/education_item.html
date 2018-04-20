@@ -1,38 +1,43 @@
 <template name="education_item">
-	<div class="panel">
-		<div class="form-group-lg">
+	<div class="panel panel-default">
+		<div class="panel-heading panel-title">
 			<label>{{getEducationPeriod}}</label>
 		</div>
 
-		<div class="form-group">
-			<label>Место учебы:</label>
-			<span>{{education.name}}</span>
-		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<label>Место учебы:</label>
+				<span>{{education.name}}</span>
+			</div>
 
-		<div class="form-group">
-			<label>Факультет:</label>
-			<span>{{education.faculty}}</span>
-		</div>
 
-		<div class="form-group">
-			<label for="location">Город:</label>
-			<span>{{location education.location}}</span>
-		</div>
+			<div class="form-group">
+				<label>Факультет:</label>
+				<span>{{education.faculty}}</span>
+			</div>
 
-		<div class="form-group responsibilities">
-			<label>Дополнительно</label>
-			<p class="form-control-static">
-				{{education.additional}}
-			</p>
-		</div>
+			<div class="form-group">
+				<label for="location">Город:</label>
+				<span>{{location education.location}}</span>
+			</div>
 
-		<div class="form-group">
-			<a href="{{pathFor 'profile.educations.id' educationId=education._id}}" class="btn btn-default">
-				Редактировать
-			</a>
-			<a href="#" class="btn btn-default js-remove">
-				Удалить
-			</a>
+			<div class="form-group responsibilities">
+				<label>Дополнительно</label>
+				<p class="form-control-static">
+					{{education.additional}}
+				</p>
+			</div>
+
+			{{#if isEdit}}
+				<div class="form-group">
+					<a href="{{pathFor 'profile.educations.id' educationId=education._id}}" class="btn btn-default">
+						<span class="glyphicon glyphicon-edit"></span> Редактировать
+					</a>
+					<a href="#" class="js-remove">
+						<span class="glyphicon glyphicon-remove"></span> Удалить
+					</a>
+				</div>
+			{{/if}}
 		</div>
 	</div>
 </template>

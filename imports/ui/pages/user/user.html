@@ -1,25 +1,72 @@
 <template name="user">
-	<div>
-		user
+	<div class="panel-group">
+		{{#user_info title='Контакты' path='profile.contacts'}}
+			{{> contact_info contacts=contacts}}
+		{{/user_info}}
+
+		{{#if user.profile.personal.about}}
+			{{#user_info title='Обо мне' path='profile.personal' edit=isEdit}}
+				<div class="about">
+				<pre>
+					{{user.profile.personal.about}}
+				</pre>
+				</div>
+			{{/user_info}}
+		{{else if isEdit}}
+			{{> no_user_info
+				title='Не указаны данные о себе'
+				path='profile.personal'
+				addTitle='Добавить информацию'
+			}}
+		{{/if}}
+
+		{{#if skills}}
+			{{#user_info title='Профессиональные навыки' path='profile.specialization' edit=isEdit}}
+				<div class="skills">
+					<span>{{skills}}</span>
+				</div>
+			{{/user_info}}
+		{{else if isEdit}}
+			{{> no_user_info
+				title='Не указаны навыки'
+				path='profile.specialization'
+				addTitle='Добавить навыки'
+			}}
+		{{/if}}
+
+		{{#if experiences}}
+			{{#user_info title='Опыт работы' path='profile.experiences' edit=isEdit}}
+				{{#each experience in experiences}}
+					{{> experience_item
+						experience=experience
+						edit=false
+					}}
+				{{/each}}
+			{{/user_info}}
+		{{else if isEdit}}
+			{{> no_user_info
+				title='Не указан опыт'
+				path='profile.experiences'
+				addTitle='Добавить опыт'
+			}}
+		{{/if}}
+
+		{{#if educations}}
+			{{#user_info title='Образование' path='profile.educations' edit=isEdit}}
+				{{#each education in educations}}
+					{{> education_item
+						education=education
+						edit=false
+					}}
+				{{/each}}
+			{{/user_info}}
+		{{else if isEdit}}
+			{{> no_user_info
+				title='Не указано образование'
+				path='profile.educations'
+				addTitle='Добавить образование'
+			}}
+		{{/if}}
+
 	</div>
-	<label>
-		Профайл:
-		<a class="btn btn-default" role="button" href={{pathFor 'profile.personal'}}>Подробнее</a>
-	</label>
-	<label>
-		Специализация:
-		<a class="btn btn-default" role="button" href={{pathFor 'profile.specialization'}}>Подробнее</a>
-	</label>
-	<label>
-		Опыт:
-		<a class="btn btn-default" role="button" href={{pathFor 'profile.experiences'}}>Подробнее</a>
-	</label>
-	<label>
-		Контакты:
-		<a class="btn btn-default" role="button" href={{pathFor 'profile.contacts'}}>Подробнее</a>
-	</label>
-	<label>
-		Образование:
-		<a class="btn btn-default" role="button" href={{pathFor 'profile.educations'}}>Подробнее</a>
-	</label>
 </template>
