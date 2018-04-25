@@ -1,4 +1,5 @@
 import {Class} from 'meteor/jagi:astronomy'
+import {cities, industries, companySize} from '/imports/api/enums/enums'
 
 const collection = new Mongo.Collection('companies')
 
@@ -6,14 +7,44 @@ const Company = Class.create({
   name: "Company",
   collection,
   fields: {
-    title: String,
+    name: String,
     _user: String,
     imageUrl: {
       type: String,
       optional: true
     },
+    backgroundImage: {
+      type: String,
+      optional: true
+    },
     createdAt: Date,
     updatedAt: Date,
+    webUrl: {
+      type: String,
+      optional: true
+    },
+    size: {
+      type:companySize,
+      default: 0
+    },
+    about: {
+      type: String,
+      optional: true
+    },
+
+    location: {
+      type: cities,
+      optional: true
+    },
+    address: {
+      type: String,
+      optional: true
+    },
+    industry: {
+      type: industries,
+      optional: true
+    }
+
   },
 
   behaviors: {

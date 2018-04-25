@@ -9,7 +9,6 @@ import '/imports/ui/pages/users/users'
 import '/imports/ui/pages/private_settings/private_settings'
 
 
-
 FlowRouter.notFound = {
   action: function() {
     BlazeLayout.render('default_layout', {
@@ -100,7 +99,10 @@ const profileRoutes = FlowRouter.group({
   prefix: '/profile',
   name: 'profile',
   triggersEnter: [function(context, redirect) {
-    console.log('running group profile');
+    console.log('profile triggers')
+    if(!Meteor.userId()) {
+      redirect('/auth/sign-in')
+    }
   }]
 })
 

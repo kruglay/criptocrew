@@ -18,6 +18,10 @@ Template.pfofile_badge.helpers({
 Template.pfofile_badge.events({
   'click .js-exit'(e, t) {
     e.preventDefault()
-    Meteor.logout()
+    Meteor.logout(err => {
+      if(!err) {
+        FlowRouter.redirect('/')
+      }
+    })
   }
 })
